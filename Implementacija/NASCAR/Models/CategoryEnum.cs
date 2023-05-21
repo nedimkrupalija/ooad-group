@@ -1,8 +1,15 @@
 ﻿using System;
 
-public class Class1
+public enum CategoryEnum
 {
-	public Class1()
-	{
-	}
+    SEDAN, 
+    SPORTSCAR, 
+    SUV, 
+    COUPE, 
+    CROSSOVER, 
+    MINIVAN,
+    VAN,
+    CABRIO
+
+	
 }

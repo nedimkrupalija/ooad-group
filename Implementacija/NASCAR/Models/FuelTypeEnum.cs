@@ -1,8 +1,8 @@
 ﻿using System;
 
-public class Class1
+public enum FuelTypeEnum
 {
-	public Class1()
-	{
-	}
+	DIESEL,
+	PETROL,
+	ELECTRIC
 }
