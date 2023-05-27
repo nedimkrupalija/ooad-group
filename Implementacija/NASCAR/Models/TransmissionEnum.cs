@@ -1,7 +1,9 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
-public enum TransmissionEnum
+public class TransmissionEnum
 {
-	MANUAL,
-	AUTOMATIC
+    [Key]
+    public int id {get;set;}
+    public enum transmission {Manual,Automatic}
 }
