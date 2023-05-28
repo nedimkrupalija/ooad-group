@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using NASCAR.Models
+using NASCAR.Models;
 namespace NASCAR.Data
 {
     public class ApplicationDbContext : IdentityDbContext

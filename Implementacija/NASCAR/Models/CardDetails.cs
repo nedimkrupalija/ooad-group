@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace NASCAR.Models
 {
@@ -8,9 +8,10 @@ namespace NASCAR.Models
 	/// </summary>
 	public class CardDetails
 	{
+		[Key]
 		public int CardNumber { get; set; }
-		public int CVV { get; set; }
-		public DateTime dateOfExpiry { get; set; }
+		public int? CVV { get; set; }
+		public string? dateOfExpiry { get; set; }
 
 		public CardDetails()
 		{

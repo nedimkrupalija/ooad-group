@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NASCAR.Models
 {
+
     public enum TransmissionEnum
     {
         Manual,
@@ -10,8 +11,8 @@ namespace NASCAR.Models
     }
 
 
-    public class Transmission
+    /*public class Transmission
     {
         public TransmissionEnum VehicleTransmission { get; set; }
-    }
+    }*/
 }

@@ -10,10 +10,10 @@ namespace NASCAR.Models
     }
 
 
-    public class PaymentTypeEnum
+   /* public class PaymentTypeEnum
     {
         [Key]
         public int Id { get; set; }
         public PaymentEnum PaymentType { get; set; }
-    }
+    }*/
 }

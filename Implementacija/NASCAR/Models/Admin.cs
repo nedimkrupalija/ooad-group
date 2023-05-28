@@ -1,6 +1,11 @@
 ﻿namespace NASCAR.Models
 {
-    public class Class
+    public class Admin : User
     {
+
+        public Admin()
+        {
+
+        }
     }
 }
