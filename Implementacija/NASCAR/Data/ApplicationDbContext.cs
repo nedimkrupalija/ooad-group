@@ -14,9 +14,13 @@ namespace NASCAR.Data
         public DbSet<Reservation> Reservation { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         { 
-            modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<User>().ToTable("User")
+                .HasDiscriminator<string>("UserType")
+                .HasValue<RegisteredUser>("RegisteredUser")
+                .HasValue<Admin>("Admin")
             modelBuilder.Entity<Vehicle>().ToTable("Vehicle");
             modelBuilder.Entity<Reservation>().ToTable("Reservation");
+
             base.OnModelCreating(modelBuilder);
         }
 

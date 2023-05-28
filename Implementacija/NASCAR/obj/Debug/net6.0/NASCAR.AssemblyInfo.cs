@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-NASCAR-92D4F9D6-08C0-438F-B216-751131230C1A")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("NASCAR")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]

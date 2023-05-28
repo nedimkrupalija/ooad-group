@@ -1,9 +1,19 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-public class CategoryEnum
+namespace NASCAR.Models
 {
-    [Key]
-    public int Id { get; set; }
-    public enum transmission { Sedan, Sports, SUV, Coupe, Crossover, Minivan, Van, Cabrio };
+    public enum CategoryEnum
+    {
+        Sedan, Sports, SUV, Coupe, Crossover, Minivan, Van, Cabrio
+    }
+
+
+    public class Category
+    {
+        [Key]
+        public int Id { get; set; }
+        public CategoryEnum VehicleCategory { get; set; }
+    }
+
 }

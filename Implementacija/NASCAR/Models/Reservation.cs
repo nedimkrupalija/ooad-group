@@ -1,15 +1,22 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
-public class Reservation
+namespace NASCAR.Models
 {
-    public int Id { get; set; }
-    public DateTime pickUp { get; set; }
-    public User user { get; set; }
-    public Vehicle vehicle { get; set; }
 
-    public Discount discount { get; set; }
-    public PaymentTypeEnum returnTime { get; set; }
-    public Reservation()
+    public class Reservation
     {
+        [Key]
+        public int Id { get; set; }
+        public DateTime PickUp { get; set; }
+        public User User { get; set; }
+        public Vehicle Vehicle { get; set; }
+
+        public Discount Discount { get; set; }
+        public PaymentTypeEnum PaymentType { get; set; }
+        public Reservation()
+        {
+        }
     }
+
 }

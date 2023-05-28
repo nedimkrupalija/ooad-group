@@ -1,9 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-public class Discount
+namespace NASCAR.Models
 {
-    [Key]
-    public int Id { get; set; }
- 
+    public class Discount
+    {
+        [Key]
+        public int Id { get; set; }
+        public Double DiscountPercent { get; set; }
+        public Double DiscountTotal { get; set; }
+    }
 }
+
