@@ -1,9 +1,18 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-public class TransmissionEnum
+namespace NASCAR.Models
 {
-    [Key]
-    public int id {get;set;}
-    public enum transmission {Manual,Automatic}
+
+    public enum TransmissionEnum
+    {
+        Manual,
+        Automatic
+    }
+
+
+    /*public class Transmission
+    {
+        public TransmissionEnum VehicleTransmission { get; set; }
+    }*/
 }

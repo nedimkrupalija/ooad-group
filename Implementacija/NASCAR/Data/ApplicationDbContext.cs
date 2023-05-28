@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
+using NASCAR.Models;
 namespace NASCAR.Data
 {
     public class ApplicationDbContext : IdentityDbContext
@@ -14,9 +14,17 @@ namespace NASCAR.Data
         public DbSet<Reservation> Reservation { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         { 
-            modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<User>().ToTable("User")
+                .HasDiscriminator<string>("UserType")
+                .HasValue<RegisteredUser>("RegisteredUser")
+                .HasValue<Admin>("Admin");
             modelBuilder.Entity<Vehicle>().ToTable("Vehicle");
             modelBuilder.Entity<Reservation>().ToTable("Reservation");
+            modelBuilder.Entity<Address>().ToTable("Address");
+            modelBuilder.Entity<CardDetails>().ToTable("CardDetails");
+            modelBuilder.Entity<Discount>().ToTable("Discount");
+            modelBuilder.Entity<DriversLicence>().ToTable("DriversLicence");
+            
             base.OnModelCreating(modelBuilder);
         }
 

@@ -1,22 +1,27 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-public class Vehicle
+namespace NASCAR.Models
 {
-	public int Id { get; set; }
-	public string Name { get; set; }
-	public double price { get; set; }
-    public int modelYear { get; set; }
-    public bool isReserved { get; set; }
-    public TransmissionEnum transmission { get; set; }
-    public double mileage { get; set; }
-    public CategoryEnum category { get; set; }
-    public string description { get; set; }
-    public string picture { get; set; }
-    public string color { get; set; }
-    public int seats { get; set; }
-    public int doors { get; set; }
+    public class Vehicle
+    {
+        [Key]
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public double? Price { get; set; }
+        public int? ModelYear { get; set; }
+        public bool? IsReserved { get; set; }
+        public TransmissionEnum? Transmission { get; set; }
+        public double? Mileage { get; set; }
+        public CategoryEnum? Category { get; set; }
+        public string? Description { get; set; }
+        public string? Picutre { get; set; }
+        public string? Color { get; set; }
+        public int? Seats { get; set; }
+        public int? Doors { get; set; }
 
-    public Vehicle()
-	{
-	}
+        public Vehicle()
+        {
+        }
+    }
 }

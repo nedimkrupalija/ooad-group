@@ -1,9 +1,19 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-public class PaymentTypeEnum
+namespace NASCAR.Models
 {
-    [Key]
-    public int id { get;set;}
-    public enum payment { Cash,Card }
+    public enum PaymentEnum
+    {
+        Cash,
+        Card
+    }
+
+
+   /* public class PaymentTypeEnum
+    {
+        [Key]
+        public int Id { get; set; }
+        public PaymentEnum PaymentType { get; set; }
+    }*/
 }
