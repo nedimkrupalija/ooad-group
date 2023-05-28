@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Implementacija",
+    "\\Implementacija\\NASCAR",
+    "\\Implementacija\\NASCAR\\Data",
+    "\\Implementacija\\NASCAR\\Models"
   ],
-  "SelectedNode": "\\C:\\Users\\User\\Source\\Repos\\nedimkrupalija\\ooad-group-Rent-A-Car",
   "PreviewInSolutionExplorer": false
 }
