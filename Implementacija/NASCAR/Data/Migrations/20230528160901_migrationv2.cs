@@ -233,7 +233,7 @@ namespace NASCAR.Data.Migrations
                 nullable: true);
 
             migrationBuilder.AlterColumn<string>(
-                name: "UserName",
+                name: "Username",
                 table: "User",
                 type: "nvarchar(max)",
                 nullable: true,
@@ -724,7 +724,7 @@ namespace NASCAR.Data.Migrations
                 defaultValue: 0);
 
             migrationBuilder.AlterColumn<string>(
-                name: "UserName",
+                name: "Username",
                 table: "User",
                 type: "nvarchar(max)",
                 nullable: false,

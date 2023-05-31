@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,6 +10,9 @@ namespace NASCAR.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [DisplayName("Pickup date")]
+        [DataType(DataType.Date)]
         public string? PickUpDate { get; set; }
 
         [ForeignKey("User")]
@@ -22,6 +26,8 @@ namespace NASCAR.Models
         [ForeignKey("Discount")]
         public int DiscountId { get; set; } 
         public Discount? Discount { get; set; }
+        [DisplayName("Payment type")]
+        [EnumDataType(typeof(PaymentEnum))]
         public PaymentEnum? PaymentType { get; set; }
         public Reservation()
         {

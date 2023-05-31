@@ -19,6 +19,26 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Admin/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Admin/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Admin/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Admin/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -27,24 +47,44 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservations/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXENyZWF0ZS5jc2h0bWw=
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/RegisteredUser/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJlZFVzZXJcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservations/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXERlbGV0ZS5jc2h0bWw=
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/RegisteredUser/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJlZFVzZXJcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservations/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXERldGFpbHMuY3NodG1s
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/RegisteredUser/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJlZFVzZXJcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservations/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXEVkaXQuY3NodG1s
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/RegisteredUser/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJlZFVzZXJcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservations/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXEluZGV4LmNzaHRtbA==
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/RegisteredUser/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJlZFVzZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservation/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservation/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservation/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservation/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservation/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Shared/Error.cshtml]
@@ -57,6 +97,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Vehicle/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Vehicle/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Vehicle/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Vehicle/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Vehicle/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Nedim Krupalija/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/_ViewImports.cshtml]

@@ -150,7 +150,7 @@ namespace NASCAR.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Username")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -329,7 +329,7 @@ namespace NASCAR.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
