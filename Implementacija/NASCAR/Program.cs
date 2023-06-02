@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NASCAR.Data;
-
+using NASCAR.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,10 +10,19 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+
+builder.Services.ConfigureApplicationCookie(o => {
+    o.ExpireTimeSpan = TimeSpan.FromDays(5);
+    o.SlidingExpiration = true;
+});
+
+
 
 var app = builder.Build();
 
