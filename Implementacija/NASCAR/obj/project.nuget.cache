@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ipG1/jUHpR9Lm2ihsHbUJWxLFe2izgBCGumj7zzOZL/figR/ueFkNHLtz6cvNOaclYUg48sZxGeTqlePPQnjcw==",
+  "dgSpecHash": "FQ/GizEuNvwUXqGLlj5TXIRSvDoK8TFEBzeE7X5z2gljTGz/4JbbRPGsXhmMRALUHaqBWuP6z5poLKxWI40eTQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Nedim Krupalija\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj",
   "expectedPackageFiles": [
@@ -106,6 +106,8 @@
     "C:\\Users\\Nedim Krupalija\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Nedim Krupalija\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Nedim Krupalija\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\Nedim Krupalija\\.nuget\\packages\\sendgrid\\9.28.1\\sendgrid.9.28.1.nupkg.sha512",
+    "C:\\Users\\Nedim Krupalija\\.nuget\\packages\\starkbank-ecdsa\\1.3.3\\starkbank-ecdsa.1.3.3.nupkg.sha512",
     "C:\\Users\\Nedim Krupalija\\.nuget\\packages\\swashbuckle.aspnetcore\\6.3.0\\swashbuckle.aspnetcore.6.3.0.nupkg.sha512",
     "C:\\Users\\Nedim Krupalija\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.3.0\\swashbuckle.aspnetcore.swagger.6.3.0.nupkg.sha512",
     "C:\\Users\\Nedim Krupalija\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.3.0\\swashbuckle.aspnetcore.swaggergen.6.3.0.nupkg.sha512",
