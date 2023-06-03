@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: Admin
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
               return _context.Admin != null ? 
@@ -28,6 +30,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: Admin/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Admin == null)
@@ -46,6 +49,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: Admin/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -56,6 +60,7 @@ namespace NASCAR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Username,Password,Age")] Admin admin)
         {
             if (ModelState.IsValid)
@@ -68,6 +73,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: Admin/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Admin == null)
@@ -88,6 +94,7 @@ namespace NASCAR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Password,Age")] Admin admin)
         {
             if (id != admin.Id)
@@ -119,6 +126,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: Admin/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Admin == null)
@@ -139,6 +147,7 @@ namespace NASCAR.Controllers
         // POST: Admin/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Admin == null)

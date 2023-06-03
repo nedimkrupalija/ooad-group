@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: RegisteredUser
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.RegisteredUser.Include(r => r.Address).Include(r => r.Licence);
@@ -27,6 +29,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: RegisteredUser/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.RegisteredUser == null)
@@ -47,6 +50,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: RegisteredUser/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["AdressId"] = new SelectList(_context.Address, "Id", "Id");
@@ -59,6 +63,7 @@ namespace NASCAR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Contact,AdressId,LicenceId,Id,Username,Password,Age")] RegisteredUser registeredUser)
         {
             if (ModelState.IsValid)
@@ -73,6 +78,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: RegisteredUser/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.RegisteredUser == null)
@@ -95,6 +101,7 @@ namespace NASCAR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Contact,AdressId,LicenceId,Id,Username,Password,Age")] RegisteredUser registeredUser)
         {
             if (id != registeredUser.Id)
@@ -128,6 +135,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: RegisteredUser/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.RegisteredUser == null)
@@ -150,6 +158,7 @@ namespace NASCAR.Controllers
         // POST: RegisteredUser/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.RegisteredUser == null)
