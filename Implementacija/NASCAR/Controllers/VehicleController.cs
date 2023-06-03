@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,7 @@ namespace NASCAR.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles ="Admin, User")]
         // GET: Vehicle
         public async Task<IActionResult> Index()
         {
@@ -28,6 +29,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: Vehicle/Details/5
+        [Authorize(Roles = "Admin, User")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Vehicle == null)
@@ -46,6 +48,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: Vehicle/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -56,6 +59,7 @@ namespace NASCAR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
@@ -68,6 +72,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: Vehicle/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Vehicle == null)
@@ -86,6 +91,7 @@ namespace NASCAR.Controllers
         // POST: Vehicle/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
@@ -119,6 +125,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: Vehicle/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Vehicle == null)
@@ -137,6 +144,7 @@ namespace NASCAR.Controllers
         }
 
         // POST: Vehicle/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
