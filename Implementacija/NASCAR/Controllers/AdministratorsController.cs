@@ -22,20 +22,20 @@ namespace NASCAR.Controllers
         // GET: Administrators
         public async Task<IActionResult> Index()
         {
-              return _context.Admin != null ? 
-                          View(await _context.Admin.ToListAsync()) :
+              return _context.Administrator != null ? 
+                          View(await _context.Administrator.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Admin'  is null.");
         }
 
         // GET: Administrators/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Admin == null)
+            if (id == null || _context.Administrator == null)
             {
                 return NotFound();
             }
 
-            var administrator = await _context.Admin
+            var administrator = await _context.Administrator
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (administrator == null)
             {
@@ -70,12 +70,12 @@ namespace NASCAR.Controllers
         // GET: Administrators/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Admin == null)
+            if (id == null || _context.Administrator == null)
             {
                 return NotFound();
             }
 
-            var administrator = await _context.Admin.FindAsync(id);
+            var administrator = await _context.Administrator.FindAsync(id);
             if (administrator == null)
             {
                 return NotFound();
@@ -121,12 +121,12 @@ namespace NASCAR.Controllers
         // GET: Administrators/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Admin == null)
+            if (id == null || _context.Administrator == null)
             {
                 return NotFound();
             }
 
-            var administrator = await _context.Admin
+            var administrator = await _context.Administrator
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (administrator == null)
             {
@@ -141,14 +141,14 @@ namespace NASCAR.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Admin == null)
+            if (_context.Administrator == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Admin'  is null.");
             }
-            var administrator = await _context.Admin.FindAsync(id);
+            var administrator = await _context.Administrator.FindAsync(id);
             if (administrator != null)
             {
-                _context.Admin.Remove(administrator);
+                _context.Administrator.Remove(administrator);
             }
             
             await _context.SaveChangesAsync();
@@ -157,7 +157,7 @@ namespace NASCAR.Controllers
 
         private bool AdministratorExists(int id)
         {
-          return (_context.Admin?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Administrator?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

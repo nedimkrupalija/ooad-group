@@ -10,12 +10,12 @@ namespace NASCAR.Data
         {
         }
         
-        public DbSet<Administrator> Admin { get; set; } 
+        public DbSet<Administrator> Administrator { get; set; } 
         public DbSet<RegisteredUser> RegisteredUser { get; set; }
         public DbSet<Vehicle> Vehicle { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
         public DbSet<DriversLicence> DriversLicence { get; set; }
-        public DbSet<Address> Address { get; set; }
+        public DbSet<VehicleAddress> VehicleAddress { get; set; }
         public DbSet<CardDetails> CardDetails { get; set; } 
         public DbSet<Discount> Discount { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,8 +29,12 @@ namespace NASCAR.Data
             modelBuilder.Entity<Reservation>().ToTable("Reservation")
                 .HasMany(c => c.Vehicles)
                 .WithOne(p => p.Reservation);
-            modelBuilder.Entity<Address>().ToTable("Address");
-            modelBuilder.Entity<CardDetails>().ToTable("CardDetails");
+            modelBuilder.Entity<VehicleAddress>().ToTable("VehicleAddress")
+                .HasMany(c => c.Vehicles)
+                .WithOne(p => p.VehicleAddress);
+            modelBuilder.Entity<CardDetails>().ToTable("CardDetails")
+                .HasOne(c => c.RegisteredUser)
+                .WithOne(p => p.CardDetails);
                
             modelBuilder.Entity<Discount>().ToTable("Discount");
             modelBuilder.Entity<DriversLicence>().ToTable("DriversLicence")

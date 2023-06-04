@@ -3,23 +3,21 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NASCAR.Data;
 
 #nullable disable
 
-namespace NASCAR.Data.Migrations
+namespace NASCAR.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230528160901_migrationv2")]
-    partial class migrationv2
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "6.0.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -124,7 +122,7 @@ namespace NASCAR.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -226,7 +224,7 @@ namespace NASCAR.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("NASCAR.Models.Address", b =>
+            modelBuilder.Entity("NASCAR.Models.Administrator", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -234,38 +232,43 @@ namespace NASCAR.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("City")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StreetName")
+                    b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StreetNumber")
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ZipCode")
-                        .HasColumnType("int");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address", (string)null);
+                    b.ToTable("Admininstrator", (string)null);
                 });
 
             modelBuilder.Entity("NASCAR.Models.CardDetails", b =>
                 {
-                    b.Property<int>("CardNumber")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CardNumber"), 1L, 1);
+                    b.Property<string>("CardNumber")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("CVV")
                         .HasColumnType("int");
 
-                    b.Property<string>("dateOfExpiry")
+                    b.Property<string>("DateOfExpiry")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RegisteredUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("CardNumber");
+
+                    b.HasIndex("RegisteredUserId")
+                        .IsUnique();
 
                     b.ToTable("CardDetails", (string)null);
                 });
@@ -303,7 +306,14 @@ namespace NASCAR.Data.Migrations
                     b.Property<bool?>("HasBCategory")
                         .HasColumnType("bit");
 
+                    b.Property<string>("RegisteredUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RegisteredUserId")
+                        .IsUnique()
+                        .HasFilter("[RegisteredUserId] IS NOT NULL");
 
                     b.ToTable("DriversLicence", (string)null);
                 });
@@ -316,63 +326,21 @@ namespace NASCAR.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("DiscountId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("PaymentType")
                         .HasColumnType("int");
 
                     b.Property<string>("PickUpDate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RegisteredUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VehicleId")
-                        .HasColumnType("int");
+                    b.Property<string>("RegisteredUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DiscountId");
 
                     b.HasIndex("RegisteredUserId");
 
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("VehicleId");
-
                     b.ToTable("Reservation", (string)null);
-                });
-
-            modelBuilder.Entity("NASCAR.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("User", (string)null);
-
-                    b.HasDiscriminator<string>("UserType").HasValue("User");
                 });
 
             modelBuilder.Entity("NASCAR.Models.Vehicle", b =>
@@ -413,47 +381,60 @@ namespace NASCAR.Data.Migrations
                     b.Property<double?>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int>("ResetvationId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("Seats")
                         .HasColumnType("int");
 
                     b.Property<int?>("Transmission")
                         .HasColumnType("int");
 
+                    b.Property<int>("VehicleAddressId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ResetvationId");
+
+                    b.HasIndex("VehicleAddressId");
 
                     b.ToTable("Vehicle", (string)null);
                 });
 
-            modelBuilder.Entity("NASCAR.Models.Admin", b =>
+            modelBuilder.Entity("NASCAR.Models.VehicleAddress", b =>
                 {
-                    b.HasBaseType("NASCAR.Models.User");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("Admin");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VehicleAddress", (string)null);
                 });
 
             modelBuilder.Entity("NASCAR.Models.RegisteredUser", b =>
                 {
-                    b.HasBaseType("NASCAR.Models.User");
-
-                    b.Property<int?>("AdressId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CardDetailsCardNumber")
-                        .HasColumnType("int");
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("Contact")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LicenceId")
-                        .HasColumnType("int");
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("AdressId");
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("CardDetailsCardNumber");
-
-                    b.HasIndex("LicenceId");
-
-                    b.HasDiscriminator().HasValue("RegisteredUser");
+                    b.ToTable("RegisteredUser", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -507,62 +488,81 @@ namespace NASCAR.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("NASCAR.Models.CardDetails", b =>
+                {
+                    b.HasOne("NASCAR.Models.RegisteredUser", "RegisteredUser")
+                        .WithOne("CardDetails")
+                        .HasForeignKey("NASCAR.Models.CardDetails", "RegisteredUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RegisteredUser");
+                });
+
+            modelBuilder.Entity("NASCAR.Models.DriversLicence", b =>
+                {
+                    b.HasOne("NASCAR.Models.RegisteredUser", "RegisteredUser")
+                        .WithOne("Licence")
+                        .HasForeignKey("NASCAR.Models.DriversLicence", "RegisteredUserId");
+
+                    b.Navigation("RegisteredUser");
+                });
+
             modelBuilder.Entity("NASCAR.Models.Reservation", b =>
                 {
-                    b.HasOne("NASCAR.Models.Discount", "Discount")
-                        .WithMany()
-                        .HasForeignKey("DiscountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NASCAR.Models.RegisteredUser", null)
+                    b.HasOne("NASCAR.Models.RegisteredUser", "RegisteredUser")
                         .WithMany("Reservations")
-                        .HasForeignKey("RegisteredUserId");
-
-                    b.HasOne("NASCAR.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("RegisteredUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NASCAR.Models.Vehicle", "Vehicle")
-                        .WithMany()
-                        .HasForeignKey("VehicleId")
+                    b.Navigation("RegisteredUser");
+                });
+
+            modelBuilder.Entity("NASCAR.Models.Vehicle", b =>
+                {
+                    b.HasOne("NASCAR.Models.Reservation", "Reservation")
+                        .WithMany("Vehicles")
+                        .HasForeignKey("ResetvationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Discount");
+                    b.HasOne("NASCAR.Models.VehicleAddress", "VehicleAddress")
+                        .WithMany("Vehicles")
+                        .HasForeignKey("VehicleAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Reservation");
 
-                    b.Navigation("Vehicle");
+                    b.Navigation("VehicleAddress");
                 });
 
             modelBuilder.Entity("NASCAR.Models.RegisteredUser", b =>
                 {
-                    b.HasOne("NASCAR.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AdressId");
-
-                    b.HasOne("NASCAR.Models.CardDetails", "CardDetails")
-                        .WithMany()
-                        .HasForeignKey("CardDetailsCardNumber");
-
-                    b.HasOne("NASCAR.Models.DriversLicence", "Licence")
-                        .WithMany()
-                        .HasForeignKey("LicenceId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithOne()
+                        .HasForeignKey("NASCAR.Models.RegisteredUser", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
+                });
 
-                    b.Navigation("Address");
+            modelBuilder.Entity("NASCAR.Models.Reservation", b =>
+                {
+                    b.Navigation("Vehicles");
+                });
 
+            modelBuilder.Entity("NASCAR.Models.VehicleAddress", b =>
+                {
+                    b.Navigation("Vehicles");
+                });
+
+            modelBuilder.Entity("NASCAR.Models.RegisteredUser", b =>
+                {
                     b.Navigation("CardDetails");
 
                     b.Navigation("Licence");
-                });
 
-            modelBuilder.Entity("NASCAR.Models.RegisteredUser", b =>
-                {
                     b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
