@@ -16,13 +16,7 @@
                 @Html.DisplayNameFor(model => model.PickUpDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vehicle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Discount)
+                @Html.DisplayNameFor(model => model.RegisteredUser)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PaymentType)
@@ -37,13 +31,7 @@
                 @Html.DisplayFor(modelItem => item.PickUpDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vehicle.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Discount.Id)
+                @Html.DisplayFor(modelItem => item.RegisteredUser.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentType)
@@ -51,10 +39,7 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                @if (User.IsInRole("Admin"))
-                {
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    }
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

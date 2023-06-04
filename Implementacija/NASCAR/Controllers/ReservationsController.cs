@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,93 +10,90 @@ using NASCAR.Models;
 
 namespace NASCAR.Controllers
 {
-    public class AdminController : Controller
+    public class ReservationsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public AdminController(ApplicationDbContext context)
+        public ReservationsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Admin
-        [Authorize(Roles = "Admin")]
+        // GET: Reservations
         public async Task<IActionResult> Index()
         {
-              return _context.Admin != null ? 
-                          View(await _context.Admin.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Admin'  is null.");
+            var applicationDbContext = _context.Reservation.Include(r => r.RegisteredUser);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Admin/Details/5
-        [Authorize(Roles = "Admin")]
+        // GET: Reservations/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Admin == null)
+            if (id == null || _context.Reservation == null)
             {
                 return NotFound();
             }
 
-            var admin = await _context.Admin
+            var reservation = await _context.Reservation
+                .Include(r => r.RegisteredUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (admin == null)
+            if (reservation == null)
             {
                 return NotFound();
             }
 
-            return View(admin);
+            return View(reservation);
         }
 
-        // GET: Admin/Create
-        [Authorize(Roles = "Admin")]
+        // GET: Reservations/Create
         public IActionResult Create()
         {
+            ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id");
             return View();
         }
 
-        // POST: Admin/Create
+        // POST: Reservations/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("Id,Username,Password,Age")] Admin admin)
+        public async Task<IActionResult> Create([Bind("Id,PickUpDate,RegisteredUserId,PaymentType")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(admin);
+                _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(admin);
+            ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id", reservation.RegisteredUserId);
+            return View(reservation);
         }
 
-        // GET: Admin/Edit/5
-        [Authorize(Roles = "Admin")]
+        // GET: Reservations/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Admin == null)
+            if (id == null || _context.Reservation == null)
             {
                 return NotFound();
             }
 
-            var admin = await _context.Admin.FindAsync(id);
-            if (admin == null)
+            var reservation = await _context.Reservation.FindAsync(id);
+            if (reservation == null)
             {
                 return NotFound();
             }
-            return View(admin);
+            ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id", reservation.RegisteredUserId);
+            return View(reservation);
         }
 
-        // POST: Admin/Edit/5
+        // POST: Reservations/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Password,Age")] Admin admin)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PickUpDate,RegisteredUserId,PaymentType")] Reservation reservation)
         {
-            if (id != admin.Id)
+            if (id != reservation.Id)
             {
                 return NotFound();
             }
@@ -106,12 +102,12 @@ namespace NASCAR.Controllers
             {
                 try
                 {
-                    _context.Update(admin);
+                    _context.Update(reservation);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AdminExists(admin.Id))
+                    if (!ReservationExists(reservation.Id))
                     {
                         return NotFound();
                     }
@@ -122,51 +118,51 @@ namespace NASCAR.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(admin);
+            ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id", reservation.RegisteredUserId);
+            return View(reservation);
         }
 
-        // GET: Admin/Delete/5
-        [Authorize(Roles = "Admin")]
+        // GET: Reservations/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Admin == null)
+            if (id == null || _context.Reservation == null)
             {
                 return NotFound();
             }
 
-            var admin = await _context.Admin
+            var reservation = await _context.Reservation
+                .Include(r => r.RegisteredUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (admin == null)
+            if (reservation == null)
             {
                 return NotFound();
             }
 
-            return View(admin);
+            return View(reservation);
         }
 
-        // POST: Admin/Delete/5
+        // POST: Reservations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Admin == null)
+            if (_context.Reservation == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Admin'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Reservation'  is null.");
             }
-            var admin = await _context.Admin.FindAsync(id);
-            if (admin != null)
+            var reservation = await _context.Reservation.FindAsync(id);
+            if (reservation != null)
             {
-                _context.Admin.Remove(admin);
+                _context.Reservation.Remove(reservation);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AdminExists(int id)
+        private bool ReservationExists(int id)
         {
-          return (_context.Admin?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Reservation?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

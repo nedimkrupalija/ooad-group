@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using NASCAR.Data;
 using NASCAR.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using NASCAR.Models;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,19 +13,25 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddDefaultIdentity<IdentityUser>(options => {
-    options.SignIn.RequireConfirmedAccount = false;
-    options.Password = new PasswordOptions
-    {
-        RequireDigit = true,
-        RequiredLength = 5,
-        RequireLowercase = false,
-        RequireUppercase = false,
-        RequireNonAlphanumeric = false
-    };
-})
-    
+
+builder.Services.AddDefaultIdentity<RegisteredUser>()
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddControllersWithViews();
+
+
+
+builder.Services.Configure<IdentityOptions>(options => {
+
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 5;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.User.RequireUniqueEmail = false;
+});
+    
+   
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IEmailSender, EmailSender>();

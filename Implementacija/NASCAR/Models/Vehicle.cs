@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NASCAR.Models
 {
@@ -16,7 +17,15 @@ namespace NASCAR.Models
         [EnumDataType(typeof(TransmissionEnum))]
         public TransmissionEnum? Transmission { get; set; }
         public double? Mileage { get; set; }
+        public Address Address { get; set; }
+
+        [ForeignKey("Reservation")]
+        public int ResetvationId { get; set; }
+        public Reservation Reservation { get; set; }
+
+
         [EnumDataType(typeof(CategoryEnum))]
+        [DisplayName("Category")]
         public CategoryEnum? Category { get; set; }
         public string? Description { get; set; }
         public string? Picutre { get; set; }

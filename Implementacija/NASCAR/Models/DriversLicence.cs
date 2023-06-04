@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace NASCAR.Models
 {
 
@@ -15,6 +17,11 @@ namespace NASCAR.Models
 		
 		[DisplayName("B category")]
 		public Boolean? HasBCategory { get; set; }
+		[ForeignKey("RegisteredUser")]
+		[DisplayName("User")]
+		public string? RegisteredUserId { get; set; }	
+		public RegisteredUser? RegisteredUser { get; set; }	
+
 
 		public DriversLicence()
 		{

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,25 +10,23 @@ using NASCAR.Models;
 
 namespace NASCAR.Controllers
 {
-    public class VehicleController : Controller
+    public class VehiclesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public VehicleController(ApplicationDbContext context)
+        public VehiclesController(ApplicationDbContext context)
         {
             _context = context;
         }
-        [Authorize(Roles ="Admin, User")]
-        // GET: Vehicle
+
+        // GET: Vehicles
         public async Task<IActionResult> Index()
         {
-              return _context.Vehicle != null ? 
-                          View(await _context.Vehicle.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Vehicle'  is null.");
+            var applicationDbContext = _context.Vehicle.Include(v => v.Reservation);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Vehicle/Details/5
-        [Authorize(Roles = "Admin, User")]
+        // GET: Vehicles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Vehicle == null)
@@ -38,6 +35,7 @@ namespace NASCAR.Controllers
             }
 
             var vehicle = await _context.Vehicle
+                .Include(v => v.Reservation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicle == null)
             {
@@ -47,20 +45,19 @@ namespace NASCAR.Controllers
             return View(vehicle);
         }
 
-        // GET: Vehicle/Create
-        [Authorize(Roles = "Admin")]
+        // GET: Vehicles/Create
         public IActionResult Create()
         {
+            ViewData["ResetvationId"] = new SelectList(_context.Reservation, "Id", "Id");
             return View();
         }
 
-        // POST: Vehicle/Create
+        // POST: Vehicles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,ResetvationId,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
@@ -68,11 +65,11 @@ namespace NASCAR.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ResetvationId"] = new SelectList(_context.Reservation, "Id", "Id", vehicle.ResetvationId);
             return View(vehicle);
         }
 
-        // GET: Vehicle/Edit/5
-        [Authorize(Roles = "Admin")]
+        // GET: Vehicles/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Vehicle == null)
@@ -85,16 +82,16 @@ namespace NASCAR.Controllers
             {
                 return NotFound();
             }
+            ViewData["ResetvationId"] = new SelectList(_context.Reservation, "Id", "Id", vehicle.ResetvationId);
             return View(vehicle);
         }
 
-        // POST: Vehicle/Edit/5
+        // POST: Vehicles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,ResetvationId,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
         {
             if (id != vehicle.Id)
             {
@@ -121,11 +118,11 @@ namespace NASCAR.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ResetvationId"] = new SelectList(_context.Reservation, "Id", "Id", vehicle.ResetvationId);
             return View(vehicle);
         }
 
-        // GET: Vehicle/Delete/5
-        [Authorize(Roles = "Admin")]
+        // GET: Vehicles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Vehicle == null)
@@ -134,6 +131,7 @@ namespace NASCAR.Controllers
             }
 
             var vehicle = await _context.Vehicle
+                .Include(v => v.Reservation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicle == null)
             {
@@ -143,8 +141,7 @@ namespace NASCAR.Controllers
             return View(vehicle);
         }
 
-        // POST: Vehicle/Delete/5
-        [Authorize(Roles = "Admin")]
+        // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -10,11 +10,12 @@ namespace NASCAR.Models
 		public int Id { get; set; }
 		[DisplayName("Street name:")]
 		public String? StreetName { get; set; }
-		[DisplayName("Street number:")]
-		public String? StreetNumber { get; set; }
 		public String? City { get; set; }
-		[DisplayName("Zip code:")]
-		public int? ZipCode { get; set; }
+		
+		public ICollection<Vehicle>? Vehicles { get; set; }
+
+		
+
 		public Address()
 		{
 		}

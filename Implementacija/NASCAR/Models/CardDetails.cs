@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NASCAR.Models
 {
@@ -12,12 +13,17 @@ namespace NASCAR.Models
 		[DataType(DataType.CreditCard)]
 		[DisplayName("Card number:")]
 		[Key]
-		public int CardNumber { get; set; }
+		public string CardNumber { get; set; }
 		public int? CVV { get; set; }
 		[DataType(DataType.Date)]
 		[DisplayName("Date of expiry:")]
 		public string? DateOfExpiry { get; set; }
 		
+		[ForeignKey("RegisteredUser")]
+		[DisplayName("User")]
+		public string RegisteredUserId { get; set; }
+		public RegisteredUser RegisteredUser { get; set; }
+
 		public CardDetails()
 		{
 			//

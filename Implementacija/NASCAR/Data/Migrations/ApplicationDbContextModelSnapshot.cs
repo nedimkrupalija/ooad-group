@@ -17,7 +17,7 @@ namespace NASCAR.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.16")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -122,7 +122,7 @@ namespace NASCAR.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Username")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -260,7 +260,7 @@ namespace NASCAR.Data.Migrations
                     b.Property<int?>("CVV")
                         .HasColumnType("int");
 
-                    b.Property<string>("DateOfExpiry")
+                    b.Property<string>("dateOfExpiry")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CardNumber");
@@ -359,12 +359,18 @@ namespace NASCAR.Data.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("User", (string)null);
+
+                    b.HasDiscriminator<string>("UserType").HasValue("User");
                 });
 
             modelBuilder.Entity("NASCAR.Models.Vehicle", b =>
@@ -420,7 +426,7 @@ namespace NASCAR.Data.Migrations
                 {
                     b.HasBaseType("NASCAR.Models.User");
 
-                    b.ToTable("Admin", (string)null);
+                    b.HasDiscriminator().HasValue("Admin");
                 });
 
             modelBuilder.Entity("NASCAR.Models.RegisteredUser", b =>
@@ -430,7 +436,7 @@ namespace NASCAR.Data.Migrations
                     b.Property<int?>("AdressId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CardDetailsId")
+                    b.Property<int?>("CardDetailsCardNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("Contact")
@@ -441,11 +447,11 @@ namespace NASCAR.Data.Migrations
 
                     b.HasIndex("AdressId");
 
-                    b.HasIndex("CardDetailsId");
+                    b.HasIndex("CardDetailsCardNumber");
 
                     b.HasIndex("LicenceId");
 
-                    b.ToTable("RegisteredUser", (string)null);
+                    b.HasDiscriminator().HasValue("RegisteredUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -530,15 +536,6 @@ namespace NASCAR.Data.Migrations
                     b.Navigation("Vehicle");
                 });
 
-            modelBuilder.Entity("NASCAR.Models.Admin", b =>
-                {
-                    b.HasOne("NASCAR.Models.User", null)
-                        .WithOne()
-                        .HasForeignKey("NASCAR.Models.Admin", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("NASCAR.Models.RegisteredUser", b =>
                 {
                     b.HasOne("NASCAR.Models.Address", "Address")
@@ -547,15 +544,7 @@ namespace NASCAR.Data.Migrations
 
                     b.HasOne("NASCAR.Models.CardDetails", "CardDetails")
                         .WithMany()
-                        .HasForeignKey("CardDetailsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NASCAR.Models.User", null)
-                        .WithOne()
-                        .HasForeignKey("NASCAR.Models.RegisteredUser", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
+                        .HasForeignKey("CardDetailsCardNumber");
 
                     b.HasOne("NASCAR.Models.DriversLicence", "Licence")
                         .WithMany()
