@@ -15,17 +15,15 @@ namespace NASCAR.Models
         [DataType(DataType.Date)]
         public string? PickUpDate { get; set; }
 
-        [ForeignKey("User")]
-        public int UserId { get; set; }
-        public User? User { get; set; }
+        [ForeignKey("RegisteredUser")]
+        public string RegisteredUserId { get; set;}
+        public RegisteredUser? RegisteredUser { get; set; }
 
-        [ForeignKey("Vehicle")]
-        public int VehicleId { get; set; }
-        public Vehicle? Vehicle { get; set; }
+        public ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 
-        [ForeignKey("Discount")]
-        public int DiscountId { get; set; } 
+        [NotMapped]
         public Discount? Discount { get; set; }
+
         [DisplayName("Payment type")]
         [EnumDataType(typeof(PaymentEnum))]
         public PaymentEnum? PaymentType { get; set; }
