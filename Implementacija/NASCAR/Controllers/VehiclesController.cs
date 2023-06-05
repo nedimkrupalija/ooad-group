@@ -20,10 +20,22 @@ namespace NASCAR.Controllers
         }
 
         // GET: Vehicles
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var applicationDbContext = _context.Vehicle.Include(v => v.Reservation);
-            return View(await applicationDbContext.ToListAsync());
+            if (id == null || _context.Vehicle == null)
+            {
+                return NotFound();
+            }
+
+            var vehicle = await _context.Vehicle
+                .Include(v => v.Reservation)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (vehicle == null)
+            {
+                return NotFound();
+            }
+
+            return View(vehicle);
         }
 
         // GET: Vehicles/Details/5

@@ -27,6 +27,7 @@ namespace NASCAR.Models
         [DisplayName("Payment type")]
         [EnumDataType(typeof(PaymentEnum))]
         public PaymentEnum? PaymentType { get; set; }
+
         public Reservation()
         {
         }
