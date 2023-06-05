@@ -18,8 +18,8 @@ namespace NASCAR.Models
         public string? Contact { get; set; }
 		public DriversLicence? Licence { get; set; }
 		public ICollection<Reservation>? Reservations { get; set; } = new List<Reservation>();
-        public string? FirstName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string? LastName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string? FirstName { get; set; }
+        public string? LastName { get ; set; }
 
         public RegisteredUser()
 		{

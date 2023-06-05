@@ -14,22 +14,31 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<RegisteredUser>()
+builder.Services.AddDefaultIdentity<RegisteredUser>(options => {
+
+    options.SignIn.RequireConfirmedAccount = true;
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 5;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.User.RequireUniqueEmail = true; })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 
 
-builder.Services.Configure<IdentityOptions>(options => {
+/*builder.Services.Configure<IdentityOptions>(options => {
 
     options.Password.RequireDigit = true;
     options.Password.RequiredLength = 5;
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireNonAlphanumeric = false;
-    options.User.RequireUniqueEmail = false;
-});
+    options.User.RequireUniqueEmail = true;
+    
+});*/
     
    
 builder.Services.AddControllersWithViews();

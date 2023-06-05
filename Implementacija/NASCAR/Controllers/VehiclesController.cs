@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using NASCAR.Models;
 
 namespace NASCAR.Controllers
 {
+    
     public class VehiclesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -46,6 +48,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: Vehicles/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             ViewData["VehicleAddressId"] = new SelectList(_context.VehicleAddress, "Id", "Id");
@@ -57,6 +60,7 @@ namespace NASCAR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,VehicleAddressId,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
@@ -70,6 +74,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: Vehicles/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Vehicles == null)
@@ -91,6 +96,7 @@ namespace NASCAR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,VehicleAddressId,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
         {
             if (id != vehicle.Id)
@@ -123,6 +129,7 @@ namespace NASCAR.Controllers
         }
 
         // GET: Vehicles/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Vehicles == null)
@@ -144,6 +151,7 @@ namespace NASCAR.Controllers
         // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Vehicles == null)

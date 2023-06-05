@@ -10,6 +10,7 @@ using NASCAR.Models;
 
 namespace NASCAR.Controllers
 {
+
     public class CardDetailsController : Controller
     {
         private readonly ApplicationDbContext _context;
