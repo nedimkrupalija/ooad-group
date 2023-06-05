@@ -1,8 +1,104 @@
-﻿﻿@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .topnav .search-container button {
+            float: right;
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+            .topnav .search-container button:hover {
+                background: #ccc;
+            }
+
+        /* Style the counter cards */
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            text-align: center;
+            background-color: #f1f1f1;
+            height: 300px;
+        }
+
+            .card.image {
+                height: 50%;
+                margin-bottom: 20px;
+            }
+
+            .card.image img {
+                 height: 100%;
+                 width: 100%;
+                 object-fit: cover;
+             }
+
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+        /* Float four columns side by side */
+        .column {
+            float: left;
+            width: 25%;
+            padding: 0 10px;
+            padding-top: 10px;
+            padding-bottom: 10px
+        }
+
+        /* Remove extra left and right margins, due to padding */
+        .row {
+            margin: 0 -5px;
+        }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+    </style>
+</head>
+
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <form action="">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+        <br />
+    </div>
+    <div>
+        @{
+            int i = 0;
+            foreach (var Data in Model)
+            {
+                <div class="column">
+                    <div class="card" id=@Data.Id onclick=@Html.ActionLink("","VehicleController","Details",new { id = Data.Id },null)>
+                        <div class="image">
+                            <img src=@Data.Picutre alt="" />
+                        </div>
+                        <div class="caption">
+                            <p class="product_name">@Data.Name</p>
+                            <p class="price"><b>@Data.Price $</b></p>
+                            <p class="model_year">@Data.ModelYear</p>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <button>Edit</button>
+                                <button>Delete</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</body>w

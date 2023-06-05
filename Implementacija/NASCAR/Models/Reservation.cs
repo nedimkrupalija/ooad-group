@@ -19,14 +19,18 @@ namespace NASCAR.Models
         public string RegisteredUserId { get; set;}
         public RegisteredUser? RegisteredUser { get; set; }
 
-        public ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
+        [ForeignKey("Vehicle")]
+        public int VehicleId { get; set; }
+        public Vehicle Vehicle { get; set; }
 
-        [NotMapped]
+        [ForeignKey("Discount")]
+        public int DiscountId { get; set; }
         public Discount? Discount { get; set; }
 
         [DisplayName("Payment type")]
         [EnumDataType(typeof(PaymentEnum))]
         public PaymentEnum? PaymentType { get; set; }
+
         public Reservation()
         {
         }

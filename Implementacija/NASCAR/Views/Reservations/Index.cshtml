@@ -19,6 +19,9 @@
                 @Html.DisplayNameFor(model => model.RegisteredUser)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Vehicle)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PaymentType)
             </th>
             <th></th>
@@ -32,6 +35,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RegisteredUser.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vehicle.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentType)

@@ -12,8 +12,8 @@ using NASCAR.Data;
 namespace NASCAR.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230604225058_initialv2")]
-    partial class initialv2
+    [Migration("20230605150302_migration2")]
+    partial class migration2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -338,9 +338,14 @@ namespace NASCAR.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("VehicleId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("RegisteredUserId");
+
+                    b.HasIndex("VehicleId");
 
                     b.ToTable("Reservation", (string)null);
                 });
@@ -383,9 +388,6 @@ namespace NASCAR.Migrations
                     b.Property<double?>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("ResetvationId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("Seats")
                         .HasColumnType("int");
 
@@ -396,8 +398,6 @@ namespace NASCAR.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ResetvationId");
 
                     b.HasIndex("VehicleAddressId");
 
@@ -518,24 +518,24 @@ namespace NASCAR.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("NASCAR.Models.Vehicle", "Vehicle")
+                        .WithMany("Reservations")
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("RegisteredUser");
+
+                    b.Navigation("Vehicle");
                 });
 
             modelBuilder.Entity("NASCAR.Models.Vehicle", b =>
                 {
-                    b.HasOne("NASCAR.Models.Reservation", "Reservation")
-                        .WithMany("Vehicles")
-                        .HasForeignKey("ResetvationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("NASCAR.Models.VehicleAddress", "VehicleAddress")
                         .WithMany("Vehicles")
                         .HasForeignKey("VehicleAddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Reservation");
 
                     b.Navigation("VehicleAddress");
                 });
@@ -549,9 +549,9 @@ namespace NASCAR.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NASCAR.Models.Reservation", b =>
+            modelBuilder.Entity("NASCAR.Models.Vehicle", b =>
                 {
-                    b.Navigation("Vehicles");
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("NASCAR.Models.VehicleAddress", b =>
