@@ -22,7 +22,7 @@ namespace NASCAR.Controllers
         // GET: Reservations
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Reservation.Include(r => r.RegisteredUser);
+            var applicationDbContext = _context.Reservation.Include(r => r.RegisteredUser).Include(r => r.Vehicle);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace NASCAR.Controllers
 
             var reservation = await _context.Reservation
                 .Include(r => r.RegisteredUser)
+                .Include(r => r.Vehicle)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (reservation == null)
             {
@@ -49,6 +50,7 @@ namespace NASCAR.Controllers
         public IActionResult Create()
         {
             ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id");
+            ViewData["VehicleId"] = new SelectList(_context.Vehicle, "Id", "Id");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace NASCAR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PickUpDate,RegisteredUserId,PaymentType")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("Id,PickUpDate,RegisteredUserId,VehicleId,PaymentType")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +68,7 @@ namespace NASCAR.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id", reservation.RegisteredUserId);
+            ViewData["VehicleId"] = new SelectList(_context.Vehicle, "Id", "Id", reservation.VehicleId);
             return View(reservation);
         }
 
@@ -83,6 +86,7 @@ namespace NASCAR.Controllers
                 return NotFound();
             }
             ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id", reservation.RegisteredUserId);
+            ViewData["VehicleId"] = new SelectList(_context.Vehicle, "Id", "Id", reservation.VehicleId);
             return View(reservation);
         }
 
@@ -91,7 +95,7 @@ namespace NASCAR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PickUpDate,RegisteredUserId,PaymentType")] Reservation reservation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PickUpDate,RegisteredUserId,VehicleId,PaymentType")] Reservation reservation)
         {
             if (id != reservation.Id)
             {
@@ -119,6 +123,7 @@ namespace NASCAR.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id", reservation.RegisteredUserId);
+            ViewData["VehicleId"] = new SelectList(_context.Vehicle, "Id", "Id", reservation.VehicleId);
             return View(reservation);
         }
 
@@ -132,6 +137,7 @@ namespace NASCAR.Controllers
 
             var reservation = await _context.Reservation
                 .Include(r => r.RegisteredUser)
+                .Include(r => r.Vehicle)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (reservation == null)
             {

@@ -25,10 +25,10 @@ namespace NASCAR.Data
             modelBuilder.Entity<RegisteredUser>().ToTable("RegisteredUser")
                 .HasMany(c => c.Reservations)
                 .WithOne(p => p.RegisteredUser);
-            modelBuilder.Entity<Vehicle>().ToTable("Vehicle");
-            modelBuilder.Entity<Reservation>().ToTable("Reservation")
-                .HasMany(c => c.Vehicles)
-                .WithOne(p => p.Reservation);
+            modelBuilder.Entity<Vehicle>().ToTable("Vehicle")
+                .HasMany(c => c.Reservations)
+                .WithOne(p => p.Vehicle);
+            modelBuilder.Entity<Reservation>().ToTable("Reservation");
             modelBuilder.Entity<VehicleAddress>().ToTable("VehicleAddress")
                 .HasMany(c => c.Vehicles)
                 .WithOne(p => p.VehicleAddress);

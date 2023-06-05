@@ -22,8 +22,9 @@ namespace NASCAR.Controllers
         // GET: Vehicles
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Vehicle.Include(v => v.Reservation);
-            return View(await applicationDbContext.ToListAsync());
+              return _context.Vehicle != null ? 
+                          View(await _context.Vehicle.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Vehicle'  is null.");
         }
 
         // GET: Vehicles/Details/5
@@ -35,7 +36,6 @@ namespace NASCAR.Controllers
             }
 
             var vehicle = await _context.Vehicle
-                .Include(v => v.Reservation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicle == null)
             {
@@ -48,7 +48,6 @@ namespace NASCAR.Controllers
         // GET: Vehicles/Create
         public IActionResult Create()
         {
-            ViewData["ResetvationId"] = new SelectList(_context.Reservation, "Id", "Id");
             return View();
         }
 
@@ -57,7 +56,7 @@ namespace NASCAR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,ResetvationId,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +64,6 @@ namespace NASCAR.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ResetvationId"] = new SelectList(_context.Reservation, "Id", "Id", vehicle.ResetvationId);
             return View(vehicle);
         }
 
@@ -82,7 +80,6 @@ namespace NASCAR.Controllers
             {
                 return NotFound();
             }
-            ViewData["ResetvationId"] = new SelectList(_context.Reservation, "Id", "Id", vehicle.ResetvationId);
             return View(vehicle);
         }
 
@@ -91,7 +88,7 @@ namespace NASCAR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,ResetvationId,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
         {
             if (id != vehicle.Id)
             {
@@ -118,7 +115,6 @@ namespace NASCAR.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ResetvationId"] = new SelectList(_context.Reservation, "Id", "Id", vehicle.ResetvationId);
             return View(vehicle);
         }
 
@@ -131,7 +127,6 @@ namespace NASCAR.Controllers
             }
 
             var vehicle = await _context.Vehicle
-                .Include(v => v.Reservation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicle == null)
             {
