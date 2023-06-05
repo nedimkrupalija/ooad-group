@@ -12,7 +12,7 @@ namespace NASCAR.Data
         
         public DbSet<Administrator> Administrator { get; set; } 
         public DbSet<RegisteredUser> RegisteredUser { get; set; }
-        public DbSet<Vehicle> Vehicle { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
         public DbSet<DriversLicence> DriversLicence { get; set; }
         public DbSet<VehicleAddress> VehicleAddress { get; set; }
@@ -25,13 +25,13 @@ namespace NASCAR.Data
             modelBuilder.Entity<RegisteredUser>().ToTable("RegisteredUser")
                 .HasMany(c => c.Reservations)
                 .WithOne(p => p.RegisteredUser);
-            modelBuilder.Entity<Vehicle>().ToTable("Vehicle")
-                .HasMany(c => c.Reservations)
-                .WithOne(p => p.Vehicle);
+            modelBuilder.Entity<Vehicle>().ToTable("Vehicle");
+
             modelBuilder.Entity<Reservation>().ToTable("Reservation");
-            modelBuilder.Entity<VehicleAddress>().ToTable("VehicleAddress")
-                .HasMany(c => c.Vehicles)
-                .WithOne(p => p.VehicleAddress);
+
+
+            modelBuilder.Entity<VehicleAddress>().ToTable("VehicleAddress");
+                
             modelBuilder.Entity<CardDetails>().ToTable("CardDetails")
                 .HasOne(c => c.RegisteredUser)
                 .WithOne(p => p.CardDetails);

@@ -18,8 +18,8 @@ namespace NASCAR.Controllers
 
         public IActionResult Index()
         {
-            return _context.Vehicle != null ?
-             View(_context.Vehicle.ToList()) :
+            return _context.Vehicles != null ?
+             View(_context.Vehicles.ToList()) :
              Problem("Entity set 'ApplicationDbContext.Vehicle'  is null.");
         }
 

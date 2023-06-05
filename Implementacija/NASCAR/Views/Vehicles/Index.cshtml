@@ -31,6 +31,9 @@
                 @Html.DisplayNameFor(model => model.Mileage)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.VehicleAddress)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
             <th>
@@ -71,6 +74,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Mileage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleAddress.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category)

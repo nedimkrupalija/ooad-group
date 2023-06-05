@@ -44,6 +44,11 @@
                 <span asp-validation-for="Mileage" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="VehicleAddressId" class="control-label"></label>
+                <select asp-for="VehicleAddressId" class="form-control" asp-items="ViewBag.VehicleAddressId"></select>
+                <span asp-validation-for="VehicleAddressId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
                 <input asp-for="Category" class="form-control" />
                 <span asp-validation-for="Category" class="text-danger"></span>
