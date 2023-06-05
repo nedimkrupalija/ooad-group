@@ -22,9 +22,9 @@ namespace NASCAR.Controllers
         // GET: Vehicles
         public async Task<IActionResult> Index()
         {
-              return _context.Vehicle != null ? 
-                          View(await _context.Vehicle.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Vehicle'  is null.");
+            return _context.Vehicle != null ?
+                        View(await _context.Vehicle.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Vehicle'  is null.");
         }
 
         // GET: Vehicles/Details/5
