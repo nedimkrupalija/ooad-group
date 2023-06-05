@@ -17,8 +17,12 @@ namespace NASCAR.Models
         [EnumDataType(typeof(TransmissionEnum))]
         public TransmissionEnum? Transmission { get; set; }
         public double? Mileage { get; set; }
-        public VehicleAddress VehicleAddress { get; set; }
-        public ICollection<Reservation>? Reservations { get; set; } = new List<Reservation>();
+
+        [DisplayName("Address ID")]
+        [ForeignKey("VehicleAddress")]
+        public int VehicleAddressId { get; set; }
+        public VehicleAddress? VehicleAddress { get; set; }
+        //public ICollection<Reservation>? Reservations { get; set; } = new List<Reservation>();
 
         [EnumDataType(typeof(CategoryEnum))]
         [DisplayName("Category")]

@@ -10,90 +10,87 @@ using NASCAR.Models;
 
 namespace NASCAR.Controllers
 {
-    public class VehiclesController : Controller
+    public class DiscountsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public VehiclesController(ApplicationDbContext context)
+        public DiscountsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Vehicles
+        // GET: Discounts
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Vehicles.Include(v => v.VehicleAddress);
-            return View(await applicationDbContext.ToListAsync());
+              return _context.Discount != null ? 
+                          View(await _context.Discount.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Discount'  is null.");
         }
 
-        // GET: Vehicles/Details/5
+        // GET: Discounts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Vehicles == null)
+            if (id == null || _context.Discount == null)
             {
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicles
-                .Include(v => v.VehicleAddress)
+            var discount = await _context.Discount
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vehicle == null)
+            if (discount == null)
             {
                 return NotFound();
             }
 
-            return View(vehicle);
+            return View(discount);
         }
 
-        // GET: Vehicles/Create
+        // GET: Discounts/Create
         public IActionResult Create()
         {
-            ViewData["VehicleAddressId"] = new SelectList(_context.VehicleAddress, "Id", "Id");
             return View();
         }
 
-        // POST: Vehicles/Create
+        // POST: Discounts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,VehicleAddressId,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("Id,DiscountPercent,DiscountTotal")] Discount discount)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(vehicle);
+                _context.Add(discount);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["VehicleAddressId"] = new SelectList(_context.VehicleAddress, "Id", "Id", vehicle.VehicleAddressId);
-            return View(vehicle);
+            return View(discount);
         }
 
-        // GET: Vehicles/Edit/5
+        // GET: Discounts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Vehicles == null)
+            if (id == null || _context.Discount == null)
             {
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicles.FindAsync(id);
-            if (vehicle == null)
+            var discount = await _context.Discount.FindAsync(id);
+            if (discount == null)
             {
                 return NotFound();
             }
-            ViewData["VehicleAddressId"] = new SelectList(_context.VehicleAddress, "Id", "Id", vehicle.VehicleAddressId);
-            return View(vehicle);
+            return View(discount);
         }
 
-        // POST: Vehicles/Edit/5
+        // POST: Discounts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,VehicleAddressId,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DiscountPercent,DiscountTotal")] Discount discount)
         {
-            if (id != vehicle.Id)
+            if (id != discount.Id)
             {
                 return NotFound();
             }
@@ -102,12 +99,12 @@ namespace NASCAR.Controllers
             {
                 try
                 {
-                    _context.Update(vehicle);
+                    _context.Update(discount);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VehicleExists(vehicle.Id))
+                    if (!DiscountExists(discount.Id))
                     {
                         return NotFound();
                     }
@@ -118,51 +115,49 @@ namespace NASCAR.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["VehicleAddressId"] = new SelectList(_context.VehicleAddress, "Id", "Id", vehicle.VehicleAddressId);
-            return View(vehicle);
+            return View(discount);
         }
 
-        // GET: Vehicles/Delete/5
+        // GET: Discounts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Vehicles == null)
+            if (id == null || _context.Discount == null)
             {
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicles
-                .Include(v => v.VehicleAddress)
+            var discount = await _context.Discount
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vehicle == null)
+            if (discount == null)
             {
                 return NotFound();
             }
 
-            return View(vehicle);
+            return View(discount);
         }
 
-        // POST: Vehicles/Delete/5
+        // POST: Discounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Vehicles == null)
+            if (_context.Discount == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Vehicles'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Discount'  is null.");
             }
-            var vehicle = await _context.Vehicles.FindAsync(id);
-            if (vehicle != null)
+            var discount = await _context.Discount.FindAsync(id);
+            if (discount != null)
             {
-                _context.Vehicles.Remove(vehicle);
+                _context.Discount.Remove(discount);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VehicleExists(int id)
+        private bool DiscountExists(int id)
         {
-          return (_context.Vehicles?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Discount?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

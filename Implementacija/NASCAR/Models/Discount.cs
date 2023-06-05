@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NASCAR.Models
 {
-    [NotMapped]
+    
     public class Discount
     {
-        
+        [Key]
         public int Id { get; set; }
 
        
