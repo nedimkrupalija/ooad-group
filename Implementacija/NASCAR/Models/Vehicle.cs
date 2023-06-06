@@ -28,7 +28,7 @@ namespace NASCAR.Models
         [DisplayName("Category")]
         public CategoryEnum? Category { get; set; }
         public string? Description { get; set; }
-        public string? Picutre { get; set; }
+        public string? Picture { get; set; }
         public string? Color { get; set; }
         public int? Seats { get; set; }
         public int? Doors { get; set; }

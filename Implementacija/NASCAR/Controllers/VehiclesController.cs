@@ -61,7 +61,7 @@ namespace NASCAR.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,VehicleAddressId,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,VehicleAddressId,Category,Description,Picture,Color,Seats,Doors")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace NASCAR.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,VehicleAddressId,Category,Description,Picutre,Color,Seats,Doors")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,VehicleAddressId,Category,Description,Picture,Color,Seats,Doors")] Vehicle vehicle)
         {
             if (id != vehicle.Id)
             {
