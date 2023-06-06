@@ -25,6 +25,12 @@ namespace NASCAR.Data
             modelBuilder.Entity<RegisteredUser>().ToTable("RegisteredUser")
                 .HasMany(c => c.Reservations)
                 .WithOne(p => p.RegisteredUser);
+            modelBuilder.Entity<RegisteredUser>()
+                .Property(e => e.FirstName)
+                .HasMaxLength(250);
+            modelBuilder.Entity<RegisteredUser>()
+                .Property(e => e.LastName)
+                .HasMaxLength(250);
             modelBuilder.Entity<Vehicle>().ToTable("Vehicle");
 
             modelBuilder.Entity<Reservation>().ToTable("Reservation");
