@@ -6,91 +6,49 @@
 
 <h1>Details</h1>
 
-<div>
-    <h4>Vehicle</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModelYear)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModelYear)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsReserved)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsReserved)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Transmission)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Transmission)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Mileage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Mileage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VehicleAddress)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VehicleAddress.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Picture)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Picture)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Seats)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Seats)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Doors)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Doors)
-        </dd>
-    </dl>
+
+<div class="card mb-3">
+  <h3 class="card-header">@Model.Name</h3>
+  <div class="card-body">
+    <h5 class="card-title">@Model.Category</h5>
+
+  </div>
+
+    <rect width="100%" height="100%" fill="#868e96"></rect>
+    <img class="img-fluid mx-auto" style="height: 350px" src=@Model.Picture  alt="...">
+
+  <div class="card-body">
+    <p class="card-text">About car: @Model.Description</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Price: @Model.Price BAM/day</li>
+    <li class="list-group-item">Year: @Model.ModelYear</li>
+    <li class="list-group-item">Transmission: @Model.Transmission</li>
+    <li class="list-group-item">Mileage: @Model.Mileage</li>
+    <li class="list-group-item">City: @Model.VehicleAddress.City</li>
+    <li class="list-group-item">Transmission: @Model.Transmission</li>
+    <li class="list-group-item">Color: @Model.Color</li>
+    <li class="list-group-item">Number of seats: @Model.Seats</li>
+    <li class="list-group-item">Number of doors: @Model.Doors</li>
+  </ul>
+  
+
 </div>
+
+
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @if (User.IsInRole("Administrator"))
+    {
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-info">Edit</a> 
+    }
+    
+    <div class="card-body">
+        @if (User.IsInRole("RegisteredUser"))
+        {
+            <a asp-controller="Reservations" asp-action="Create" class="btn btn-outline-success">Reservate</a>
+        }
+        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-success">Back to List</a>
+    </div>
+    
 </div>
