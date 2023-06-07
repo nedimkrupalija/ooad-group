@@ -20,7 +20,8 @@
 			@{
 				foreach (var Data in Model)
 				{
-			
+			@if(User.IsInRole("Administrator") || (Data.IsReserved==false))
+			{
 			  <div class="col d-flex">
 				<div class="card w-100">
 				  <img  src=@Data.Picture class="card-img-top" style="height: 400px" alt="...">
@@ -48,6 +49,7 @@
 			  </div>
 			  
 			
+				} 
 				}
 			
 			}
