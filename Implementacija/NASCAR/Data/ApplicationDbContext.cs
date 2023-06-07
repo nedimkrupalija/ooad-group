@@ -10,7 +10,7 @@ namespace NASCAR.Data
         {
         }
         
-        public DbSet<Administrator> Administrator { get; set; } 
+        
         public DbSet<RegisteredUser> RegisteredUser { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
@@ -21,7 +21,7 @@ namespace NASCAR.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
-            modelBuilder.Entity<Administrator>().ToTable("Admininstrator");
+            
             modelBuilder.Entity<RegisteredUser>().ToTable("RegisteredUser")
                 .HasMany(c => c.Reservations)
                 .WithOne(p => p.RegisteredUser);
