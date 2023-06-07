@@ -23,14 +23,27 @@
 			
 			  <div class="col d-flex">
 				<div class="card w-100">
-				  <img src=@Data.Picture class="card-img-top" alt="...">
+				  <img  src=@Data.Picture class="card-img-top" style="height: 400px" alt="...">
 				  <div class="card-body">
 					<h5 class="card-title text-center">@Data.Name</h5>
 					<p class="card-text text-center">@Data.Mileage km</p>
 					<p class="card-text text-center">@Data.Price BAM</p
 					<p class="card-text text-center">@Enum.GetName(typeof(TransmissionEnum), Data.Transmission)</p>
-					
-				  </div>
+					@if(User.IsInRole("Administrator"))
+							{
+								<div class="row row-cols-1" >
+								<a asp-controller="Vehicles" asp-action="Edit" asp-route-id="@Data.Id" class="btn btn-primary py-2 px-4">Edit</a>
+								<a asp-controller="Vehicles" asp-action="Delete" asp-route-id="@Data.Id" class="btn btn-secondary py-2 px-4">Delete</a>
+								</div>
+							}
+					@if(User.IsInRole("RegisteredUser"))
+							{
+								<div class="row row-cols-1">
+								<a class="btn btn-secondary py-2 px-4">Details</a>
+								<a asp-controller="Reservations" asp-action="Create" class="btn btn-primary py-2 px-4">Reservate</a>
+								</div>
+							}
+						</div>
 				</div>
 			  </div>
 			  

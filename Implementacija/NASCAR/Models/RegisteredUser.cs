@@ -8,6 +8,7 @@ namespace NASCAR.Models
 {
 	public class RegisteredUser : IdentityUser
 	{
+		
 
 		[DataType(DataType.CreditCard)]
 		[DisplayName("Card number")]
