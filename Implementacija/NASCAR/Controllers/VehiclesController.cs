@@ -67,7 +67,8 @@ namespace NASCAR.Controllers
             {
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //nameof(Index)
+                return RedirectToAction("", "Home");
             }
             ViewData["VehicleAddressId"] = new SelectList(_context.VehicleAddress, "Id", "Id", vehicle.VehicleAddressId);
             return View(vehicle);
@@ -165,7 +166,8 @@ namespace NASCAR.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            // Ovo mozda treba vratiti na nameof(Index)
+            return RedirectToAction("", "Home");
         }
 
         private bool VehicleExists(int id)
