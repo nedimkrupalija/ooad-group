@@ -36,7 +36,14 @@
 								<a asp-controller="Vehicles" asp-action="Delete" asp-route-id="@Data.Id" class="btn btn-secondary py-2 px-4">Delete</a>
 								</div>
 							}
-				</div>
+					@if(User.IsInRole("RegisteredUser"))
+							{
+								<div class="row row-cols-1">
+								<a class="btn btn-secondary py-2 px-4">Details</a>
+								<a asp-controller="Reservations" asp-action="Create" class="btn btn-primary py-2 px-4">Reservate</a>
+								</div>
+							}
+						</div>
 				</div>
 			  </div>
 			  
