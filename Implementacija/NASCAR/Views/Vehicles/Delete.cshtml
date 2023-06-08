@@ -46,8 +46,18 @@
                         <input type="submit" value="Delete" class="btn btn-danger" /> 
                          <a asp-controller="Home" asp-action="Index" class="ml-1 btn btn-success">Back to Home</a>
                  </div>
-            </form>
-        }
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-dismissible alert-warning">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <h4 class="alert-heading">Warning!</h4>
+              <p class="mb-0">This car is currently reservated, and cannot be deleted from system!</p>
+        </div>
+        <a asp-controller="Home" asp-action="Index" class="ml-1 btn btn-success mt-2">Back to Home</a>
+
+    }
 
     
    
