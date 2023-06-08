@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -28,7 +29,8 @@ namespace NASCAR.Controllers
         // GET: Reservations
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Reservation.Include(r => r.Discount).Include(r => r.RegisteredUser).Include(r => r.Vehicle);
+            var applicationDbContext = _context.Reservation.Include(r => r.Discount).Include(r => r.RegisteredUser).Include(r => r.Vehicle)
+                .Where(a => a.RegisteredUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
             return View(await applicationDbContext.ToListAsync());
         }
 
