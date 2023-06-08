@@ -46,7 +46,7 @@
     <div class="card-body">
         @if (User.IsInRole("RegisteredUser"))
         {
-            <a asp-controller="Reservations" asp-action="Create" class="btn btn-outline-success" asp-route-id="@Model.Id">Reservate</a>
+            <a asp-controller="Reservations" asp-action="Create" class="btn btn-outline-success" asp-route-id="@Model?.Id pr @Model?.Price">Reservate</a>
         }
         <a asp-controller="Home" asp-action="Index" class="btn btn-outline-success">Back to Home</a>
     </div>
