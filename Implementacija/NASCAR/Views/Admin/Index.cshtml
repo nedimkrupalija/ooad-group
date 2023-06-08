@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Admin panel</h1>
+
+<head>
+    <style>
+        .square-button {
+            width: 500px;
+            height: 400px;
+            font-size: 48px;
+            padding: 80px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 300px;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="col-md-6">
+            <div class="btn-group d-flex justify-content-center gap-3">
+                <a asp-controller="Vehicles" asp-action="Index" class="btn btn-primary square-button">
+                    <i class="fa fa-car fa-5x"></i>
+                    <span class="d-block mt-3">Vehicles</span>
+                </a>
+                <a asp-controller="Reservations" asp-action="Index" class="btn btn-primary square-button">
+                    <i class="fa fa-calendar fa-5x"></i>
+                    <span class="d-block mt-3">Reservations</span>
+                </a>
+                <a asp-controller="DriversLicences" asp-action="Index" class="btn btn-primary square-button">
+                    <i class="fa fa-users fa-5x"></i>
+                    <span class="d-block mt-3">Licences</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
