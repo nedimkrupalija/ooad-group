@@ -72,7 +72,7 @@ namespace NASCAR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PickUpDate,RegisteredUserId,VehicleId,DiscountId,PaymentType")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("Id,PickUpDate,DropDate,Price,RegisteredUserId,VehicleId,DiscountId,PaymentType")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
