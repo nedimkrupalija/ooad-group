@@ -4,56 +4,36 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Your reservations</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+
+
+<table class="table table-hover">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PickUpDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RegisteredUser)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vehicle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Discount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaymentType)
-            </th>
-            <th></th>
+          <th scope="col">Vehicle</th>
+          <th scope="col">Total price</th>
+          <th scope="col">From date</th>
+          <th scope="col">To date</th>
+          <th scope="col">Payment type</th>
+          <th scope="col">Vehicle details</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PickUpDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegisteredUser.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vehicle.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Discount.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentType)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+      <tr class="table-info">
+      
+      @foreach(var item in Model){
+       
+      <th class="mx-auto" scope="row">@item.Vehicle.Name</th>
+      <td class="mx-auto">@item.Price BAM</td>
+      <td class="mx-auto">@item.PickUpDate</td>
+      <td class="mx-auto">@item.DropDate</td>
+      <td class="mx-auto">@item.PaymentType</td>
+      <td class="mx-auto"><a class="btn btn-outline-info" asp-controller="Vehicles" asp-action="Details" asp-route-id="@item.Vehicle.Id">Details</a></td>
+      }
         </tr>
-}
+        
     </tbody>
 </table>
+
+
