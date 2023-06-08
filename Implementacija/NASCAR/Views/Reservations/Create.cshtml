@@ -20,29 +20,28 @@
                 <label asp-for="PickUpDate" class="control-label"></label>
                 <input asp-for="PickUpDate" class="form-control" id="start_date" />
                 <span asp-validation-for="PickUpDate" class="text-danger" id="datepicker_from"></span>
+                    <br />
             </div>
             <div class="form-group">
                 <label asp-for="DropDate" class="control-label"></label>
                 <input asp-for="DropDate" class="form-control" id="end_date" />
                     <span asp-validation-for="DropDate" class="text-danger" id="datepicker_to"></span>
+                    <br />
             </div>                   
             <div class="form-group">
                 <label asp-for="VehicleId" class="control-label" ></label>
                 <input asp-for="VehicleId" class="form-control" placeholder="@url.Split('%')[0]" readonly="" id="vehicle_id"/>
-
             </div> 
             <div class="form-group">
                 <label asp-for="DiscountId" class="form-label mt-4" for="readOnlyInput">Discount</label>
                 <input asp-for="DiscountId" class="form-control" id="discount" placeholder="%" readonly="" />
+                    <br />
             </div>
             <div class="form-group">
                 <label asp-for="PaymentType" class="control-label"></label>
                 <select asp-for="PaymentType" class="form-control" asp-items="ViewBag.PaymentType"></select>
                 <span asp-validation-for="PaymentType" class="text-danger"></span>
                 <br /> 
-            </div>
-            <div class="form-group">
-                <input type="submit" value="RESERVATE" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -51,6 +50,10 @@
             <label asp-for="Price" class="form-label mt-4" for="readOnlyInput"></label>
             <input asp-for="Price" class="form-control" placeholder="@url.Split('%')[2].Split("20")[1] $ per day" readonly="" id ="total_price"/>
         </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="RESERVATE" class="btn btn-primary" />
+            </div>
     </div>
 </div>
 <div>
