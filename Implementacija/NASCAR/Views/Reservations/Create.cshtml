@@ -2,48 +2,60 @@
 
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Rent";
 }
 
-<h1>Create</h1>
+<h1></h1>
 
 <h4>Reservation</h4>
 <hr />
+<body>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="PickUpDate" class="control-label"></label>
-                <input asp-for="PickUpDate" class="form-control" />
+                <input asp-for="PickUpDate" class="form-control" id="start_date" />
                 <span asp-validation-for="PickUpDate" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="DropDate" class="control-label"></label>
+                <input asp-for="DropDate" class="form-control" id="end_date" />
+                <span asp-validation-for="DropDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="RegisteredUserId" class="control-label"></label>
-                <select asp-for="RegisteredUserId" class ="form-control" asp-items="ViewBag.RegisteredUserId"></select>
+                <input asp-for="RegisteredUserId" class ="form-control" placeholder=@User.ToString readonly=""/> 
             </div>
             
             
             <div class="form-group">
-                <label asp-for="VehicleId" class="control-label"></label>
+                <label asp-for="VehicleId" class="control-label" ></label>
                 <select asp-for="VehicleId" class ="form-control" asp-items="ViewBag.VehicleId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="DiscountId" class="control-label"></label>
-                <select asp-for="DiscountId" class ="form-control" asp-items="ViewBag.DiscountId"></select>
+                <label asp-for="DiscountId" class="form-label mt-4" for="readOnlyInput2">Discount %</label>
+                <select asp-for="DiscountId" class="form-control" id="readOnlyInput2" placeholder="Discount"></select>
             </div>
             <div class="form-group">
                 <label asp-for="PaymentType" class="control-label"></label>
-                <input asp-for="PaymentType" class="form-control" />
+                <select asp-for="PaymentType" class="form-control" asp-items="ViewBag.PaymentType"></select>
                 <span asp-validation-for="PaymentType" class="text-danger"></span>
+                <br /> 
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="RESERVATE" class="btn btn-primary" />
             </div>
         </form>
     </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="Price" class="form-label mt-4" for="readOnlyInput"></label>
+            <input asp-for="Price" class="form-control" id="readOnlyInput" placeholder="Total Price" readonly="" id ="total_price"/>
+        </div>
+    </div>
 </div>
-
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
@@ -51,3 +63,19 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+         
+   
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/easing/easing.min.js"></script>
+    <script src="~/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="~/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="~/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="~/js/reservation.js"></script>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    
+</body>
