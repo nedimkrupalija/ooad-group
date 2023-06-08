@@ -5,7 +5,7 @@
 <head>
 <link href="~/css/style.css" rel="stylesheet">
     <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-   
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,7 +22,7 @@
     <!-- Libraries Stylesheet -->
 </head>
 
-<body>
+<body onload="GetMap();">
     <!-- Topbar Start -->
     <div class="container-fluid bg-dark py-3 px-lg-5 d-none d-lg-block">
         <div class="row">
@@ -116,7 +116,7 @@
     <!-- Banner Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
-            
+
                 <div class="col-lg-6 px-0">
                     <div class="px-5 bg-dark d-flex align-items-center justify-content-between" style="height: 350px;">
                         <div class="text-left">
@@ -167,8 +167,16 @@
     <!-- Vendor End -->
 
 
+<div>
+<h2 >Find us here!</h5>
+ <div id="myMap" class="mw-100" style="height: 400px"></div>
+</div>
+
+
+
+
     <!-- Footer Start -->
-    <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5" style="margin-top: 90px;">
+    <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5" >
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-uppercase text-light mb-4">Get In Touch</h4>
@@ -183,7 +191,7 @@
                     <a class="btn btn-lg btn-dark btn-lg-square" href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-           
+
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-uppercase text-light mb-4">Car Gallery</h4>
                 <div class="row mx-n1">
@@ -207,11 +215,21 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
-    
+
+
     <!-- Footer End -->
+
+    <!-- Map script -->
+<script type='text/javascript'
+src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async
+defer></script>
+<script type="text/javascript" src="~/js/map.js"></script>
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
