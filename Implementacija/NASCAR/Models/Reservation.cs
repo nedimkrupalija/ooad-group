@@ -15,6 +15,14 @@ namespace NASCAR.Models
         [DataType(DataType.Date)]
         public string? PickUpDate { get; set; }
 
+        [DisplayName("Return date")]
+        [DataType(DataType.Date)]
+        public string? DropDate { get; set; }
+
+        [DisplayName("Total price")]
+        [DataType(DataType.Text)]
+        public string? Price { get; set; }
+
         [ForeignKey("RegisteredUser")]
         public string RegisteredUserId { get; set;}
         public RegisteredUser? RegisteredUser { get; set; }

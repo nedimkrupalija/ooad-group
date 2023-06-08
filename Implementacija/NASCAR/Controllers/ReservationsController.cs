@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NASCAR.Areas.Identity.Pages.Account;
 using NASCAR.Data;
 using NASCAR.Models;
 
@@ -55,6 +56,9 @@ namespace NASCAR.Controllers
         // GET: Reservations/Create
         public IActionResult Create()
         {
+            List<RegisteredUser> reg = new List<RegisteredUser>(_context.RegisteredUser);
+           // String name = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+           // RegisteredUser pass = System.Security.Principal.WindowsIdentity.GetCurrent().User;
             ViewData["DiscountId"] = new SelectList(_context.Discount, "Id", "Id");
             ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id");
             ViewData["VehicleId"] = new SelectList(_context.Vehicles, "Id", "Id");
