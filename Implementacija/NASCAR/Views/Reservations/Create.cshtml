@@ -3,6 +3,8 @@
 
 @{
     ViewData["Title"] = "Rent";
+
+   var  url = Url.Action().Split('/')[3];
 }
 
 <h1></h1>
@@ -26,12 +28,12 @@
             </div>                   
             <div class="form-group">
                 <label asp-for="VehicleId" class="control-label" ></label>
-                <input asp-for="VehicleId" class="form-control" placeholder="@Url.Action().Split('/')[3]" readonly="" id="vehicle_id"/>
+                <input asp-for="VehicleId" class="form-control" placeholder="@url.Split('%')[0]" readonly="" id="vehicle_id"/>
 
             </div> 
             <div class="form-group">
-                <label asp-for="DiscountId" class="form-label mt-4" for="readOnlyInput">Discount %</label>
-                <select asp-for="DiscountId" class="form-control" id="readOnlyInput2" placeholder="Discount"></select>
+                <label asp-for="DiscountId" class="form-label mt-4" for="readOnlyInput">Discount</label>
+                <input asp-for="DiscountId" class="form-control" id="readOnlyInput2" placeholder="%" />
             </div>
             <div class="form-group">
                 <label asp-for="PaymentType" class="control-label"></label>
@@ -47,7 +49,7 @@
     <div class="col-md-4">
         <div class="form-group">
             <label asp-for="Price" class="form-label mt-4" for="readOnlyInput"></label>
-            <input asp-for="Price" class="form-control" type="text" readonly="" id ="total_price"/>
+            <input asp-for="Price" class="form-control" placeholder="@url.Split('%')[2].Split("20")[1] $ per day" readonly="" id ="total_price"/>
         </div>
     </div>
 </div>

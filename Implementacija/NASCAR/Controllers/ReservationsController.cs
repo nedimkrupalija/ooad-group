@@ -59,6 +59,10 @@ namespace NASCAR.Controllers
         // GET: Reservations/Create
         public IActionResult Create()
         {
+            List<string> type = new List<string>();
+            type.Add("Cash");type.Add("Card");
+
+            ViewData["PaymentType"] = new SelectList(type);
             ViewData["DiscountId"] = new SelectList(_context.Discount, "Id", "Id");
             return View();
         }
