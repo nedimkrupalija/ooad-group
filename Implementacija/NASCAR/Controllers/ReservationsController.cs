@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -58,12 +59,7 @@ namespace NASCAR.Controllers
         // GET: Reservations/Create
         public IActionResult Create()
         {
-            List<RegisteredUser> reg = new List<RegisteredUser>(_context.RegisteredUser);
-           // String name = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-           // RegisteredUser pass = System.Security.Principal.WindowsIdentity.GetCurrent().User;
             ViewData["DiscountId"] = new SelectList(_context.Discount, "Id", "Id");
-            ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id");
-            ViewData["VehicleId"] = new SelectList(_context.Vehicles, "Id", "Id");
             return View();
         }
 

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let date1 = new DateTime(Model.PickUpDate);
             let date2 = new DateTime(Model.DropDate);
 
-            Model.price = Math.ceil((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24)) * Model.Vehicle.Price;
+            $("total_price") = Math.ceil((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24)) * Model.Vehicle.Price;
         }
     });
 
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let date1 = new DateTime(Model.PickUpDate);
             let date2 = new DateTime(Model.DropDate);
 
-            Model.price = Math.ceil((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24)) * Model.Vehicle.Price;
+            $("total_price") = Math.ceil((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24)) * Model.Vehicle.Price;
         }
     });
 });
