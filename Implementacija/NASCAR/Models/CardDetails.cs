@@ -13,7 +13,7 @@ namespace NASCAR.Models
 		[DataType(DataType.CreditCard)]
 		[DisplayName("Card number:")]
 		[Key]
-		public string CardNumber { get; set; }
+		public string? CardNumber { get; set; }
 		public int? CVV { get; set; }
 		[DataType(DataType.Date)]
 		[DisplayName("Date of expiry:")]
@@ -21,8 +21,8 @@ namespace NASCAR.Models
 		
 		[ForeignKey("RegisteredUser")]
 		[DisplayName("User")]
-		public string RegisteredUserId { get; set; }
-		public RegisteredUser RegisteredUser { get; set; }
+		public string? RegisteredUserId { get; set; }
+		public RegisteredUser? RegisteredUser { get; set; }
 
 		public CardDetails()
 		{

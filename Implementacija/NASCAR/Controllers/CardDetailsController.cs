@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -23,9 +24,23 @@ namespace NASCAR.Controllers
         // GET: CardDetails
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.CardDetails.Include(c => c.RegisteredUser);
-            return View(await applicationDbContext.ToListAsync());
+            var applicationDbContext = _context.CardDetails.Include(c => c.RegisteredUser)
+                .Where(a => a.RegisteredUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var items = await applicationDbContext.ToListAsync();
+			if (items.Count != 0)
+			{
+                return RedirectToAction(nameof(Delete), new { id = items[0].CardNumber});
+			}
+			else
+			{
+                return RedirectToAction(nameof(Create));
+			}
         }
+
+        public IActionResult Exists()
+		{
+            return View();
+		}
 
         // GET: CardDetails/Details/5
         public async Task<IActionResult> Details(string id)
@@ -62,9 +77,10 @@ namespace NASCAR.Controllers
         {
             if (ModelState.IsValid)
             {
+                cardDetails.RegisteredUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 _context.Add(cardDetails);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), "Home");
             }
             ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id", cardDetails.RegisteredUserId);
             return View(cardDetails);

@@ -4,36 +4,55 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>CardDetails</h4>
-<hr />
+
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CardNumber" class="control-label"></label>
-                <input asp-for="CardNumber" class="form-control" />
+            
+            <div class="form-floating mb-3">
+                <input asp-for="CardNumber" type="text" class="form-control" id="floatingInput" placeholder="0000-0000-0000-0000">
+                <label asp-for="CardNumber">Card number</label>
                 <span asp-validation-for="CardNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CVV" class="control-label"></label>
-                <input asp-for="CVV" class="form-control" />
+              </div>
+             <div class="form-floating mb-3">
+                <input asp-for="CVV" type="text" class="form-control" id="floatingInput" placeholder="000">
+                <label asp-for="CVV">Card CVV</label>
                 <span asp-validation-for="CVV" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateOfExpiry" class="control-label"></label>
-                <input asp-for="DateOfExpiry" class="form-control" />
+              </div>
+            <div class="form-floating mb-3">
+                <input asp-for="DateOfExpiry" type="text" class="form-control" id="floatingInput" placeholder="000">
+                <label asp-for="DateOfExpiry">Date of expiry</label>
                 <span asp-validation-for="DateOfExpiry" class="text-danger"></span>
-            </div>
+              </div>
+            
             <div class="form-group">
-                <label asp-for="RegisteredUserId" class="control-label"></label>
-                <select asp-for="RegisteredUserId" class ="form-control" asp-items="ViewBag.RegisteredUserId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+                
+                <input type="submit" value="Create" class="btn btn-primary" data-toggle="modal" data-target="#myModal"/>
+             </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+            
         </form>
     </div>
 </div>
