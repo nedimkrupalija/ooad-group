@@ -1,7 +1,27 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\Nedim Krupalija\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj": {}
+=======
+<<<<<<< HEAD
+    "C:\\Users\\User\\Desktop\\ooad\\bb\\Implementacija\\NASCAR\\NASCAR.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\User\\Desktop\\ooad\\bb\\Implementacija\\NASCAR\\NASCAR.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\ooad\\bb\\Implementacija\\NASCAR\\NASCAR.csproj",
+        "projectName": "NASCAR",
+        "projectPath": "C:\\Users\\User\\Desktop\\ooad\\bb\\Implementacija\\NASCAR\\NASCAR.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\ooad\\bb\\Implementacija\\NASCAR\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "C:\\Users\\PC\\Source\\Repos\\nedimkrupalija\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj": {}
+>>>>>>> e2975f949efa86e8c58b428b5bca951a8309f765
   },
   "projects": {
     "C:\\Users\\Nedim Krupalija\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj": {
@@ -17,8 +37,13 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\Nedim Krupalija\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+=======
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> main
+>>>>>>> e2975f949efa86e8c58b428b5bca951a8309f765
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -97,7 +122,15 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+=======
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+>>>>>>> main
+>>>>>>> e2975f949efa86e8c58b428b5bca951a8309f765
         }
       }
     }
