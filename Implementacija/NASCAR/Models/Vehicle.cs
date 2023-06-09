@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NASCAR.Data;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -54,8 +55,13 @@ namespace NASCAR.Models
         [Required]
         public int? Doors { get; set; }
 
+        
+
         public Vehicle()
         {
         }
+
+       
+
     }
 }

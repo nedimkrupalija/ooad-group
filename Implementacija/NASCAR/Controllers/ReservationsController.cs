@@ -43,6 +43,8 @@ namespace NASCAR.Controllers
                 return NotFound();
             }
 
+            
+
             var reservation = await _context.Reservation
                 .Include(r => r.Discount)
                 .Include(r => r.RegisteredUser)
@@ -57,13 +59,21 @@ namespace NASCAR.Controllers
         }
 
         // GET: Reservations/Create
-        public IActionResult Create()
+        public IActionResult Create(int vehicleid, int price)
         {
-            List<string> type = new List<string>();
-            type.Add("Cash");type.Add("Card");
+            var card =  _context.CardDetails 
+                .Where(m=>m.RegisteredUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value).ToListAsync().Result;
 
+
+
+            List<string> type = new List<string>();
+            type.Add("Cash");
+            if (card.Count != 0)
+            type.Add("Card");
             ViewData["PaymentType"] = new SelectList(type);
-            ViewData["DiscountId"] = new SelectList(_context.Discount, "Id", "Id");
+            ViewData["VehicleId"] = vehicleid;
+            ViewData["Price"] = price;
+            
             return View();
         }
 
@@ -74,16 +84,23 @@ namespace NASCAR.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,PickUpDate,DropDate,Price,RegisteredUserId,VehicleId,DiscountId,PaymentType")] Reservation reservation)
         {
+            reservation.RegisteredUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var vehicle = await _context.Vehicles
+                .FirstOrDefaultAsync(m => m.Id == reservation.VehicleId);
+            vehicle.IsReserved = true;
+            _context.Update(vehicle);
+                
+
             if (ModelState.IsValid)
             {
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             ViewData["DiscountId"] = new SelectList(_context.Discount, "Id", "Id", reservation.DiscountId);
             ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id", reservation.RegisteredUserId);
             ViewData["VehicleId"] = new SelectList(_context.Vehicles, "Id", "Id", reservation.VehicleId);
-            return View(reservation);
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Reservations/Edit/5
@@ -159,6 +176,8 @@ namespace NASCAR.Controllers
                 .Include(r => r.RegisteredUser)
                 .Include(r => r.Vehicle)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            reservation.Vehicle.IsReserved = false;
             if (reservation == null)
             {
                 return NotFound();
