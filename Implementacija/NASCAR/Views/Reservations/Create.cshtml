@@ -4,7 +4,8 @@
 @{
     ViewData["Title"] = "Rent";
 
-   var  url = Url.Action().Split('/')[3];
+    var veh = ViewData["VehicleId"];
+    string? priceDay = ViewData["Price"].ToString();
 }
 
 <h1></h1>
@@ -12,82 +13,122 @@
 <h4>Reservation</h4>
 <hr />
 <body>
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="PickUpDate" class="control-label"></label>
-                <input asp-for="PickUpDate" class="form-control" id="start_date" />
-                <span asp-validation-for="PickUpDate" class="text-danger" id="datepicker_from"></span>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="PickUpDate" class="control-label"></label>
+                    <input asp-for="PickUpDate" class="form-control" />
+                    <span class="text-danger" id="date-from-validate"></span>
                     <br />
-            </div>
-            <div class="form-group">
-                <label asp-for="DropDate" class="control-label"></label>
-                <input asp-for="DropDate" class="form-control" id="end_date" />
-                    <span asp-validation-for="DropDate" class="text-danger" id="datepicker_to"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DropDate" class="control-label"></label>
+                    <input asp-for="DropDate" class="form-control"  />
+                    <span class="text-danger" id="date-to-validate"></span>
                     <br />
-            </div>                   
-            <div class="form-group">
-                <label asp-for="VehicleId" class="control-label" ></label>
-                <input asp-for="VehicleId" class="form-control" placeholder="@url.Split('%')[0]" readonly="" id="vehicle_id"/>
-            </div> 
-            <div class="form-group">
-                <label asp-for="DiscountId" class="form-label mt-4" for="readOnlyInput">Discount</label>
-                <input asp-for="DiscountId" class="form-control" id="discount" placeholder="%" readonly="" />
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="PaymentType" class="control-label"></label>
+                    <select asp-for="PaymentType" class="form-control" asp-items="ViewBag.PaymentType"></select>
+                    <span asp-validation-for="PaymentType" class="text-danger"></span>
                     <br />
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentType" class="control-label"></label>
-                <select asp-for="PaymentType" class="form-control" asp-items="ViewBag.PaymentType"></select>
-                <span asp-validation-for="PaymentType" class="text-danger"></span>
-                <br /> 
-            </div>
-        </form>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label asp-for="Price" class="form-label mt-4" for="readOnlyInput"></label>
-            <input asp-for="Price" class="form-control" placeholder="@url.Split('%')[2].Split("20")[1] $ per day" readonly="" id ="total_price"/>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Price" class="form-label mt-4">Total price in BAM</label>
+                        <p></p>
+                        <input class="visible" asp-for="Price" class="form-control" placeholder="@ViewData["Price"] per day" id="price" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input name="reservate" onclick="popup()" type="submit" value="Reservate" class="btn btn-primary" disabled />
+                    </div>
+                </div>
+                    <input value=@veh asp-for="VehicleId" class="form-control invisible" placeholder="@ViewData["VehicleId"]" readonly="" id="vehicle_id" />
+                    <input value="1" asp-for="DiscountId" class="form-control invisible" id="discount" placeholder="%" readonly="" />               
+            </form>
         </div>
-            <br />
-            <div class="form-group">
-                <input type="submit" value="RESERVATE" class="btn btn-primary" />
-            </div>
     </div>
-</div>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Home" asp-action="Index" class="mt-2 btn btn-outline-danger">Cancel</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
     <script>
-        const input = document.getElementById("start_date");
-        const price = document.getElementById("total_price");
-
-        input.addEventListener("change", calcDiff());
-
-
-            function stringToDate(_date, _format, _delimiter) {
-                var formatLowerCase = _format.toLowerCase();
-                var formatItems = formatLowerCase.split(_delimiter);
-                var dateItems = _date.split(_delimiter);
-                var monthIndex = formatItems.indexOf("mm");
-                var dayIndex = formatItems.indexOf("dd");
-                var yearIndex = formatItems.indexOf("yyyy");
-                var month = parseInt(dateItems[monthIndex]);
-                month -= 1;
-                var formatedDate = new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
-                return formatedDate;
-            }
-
-            function calcDiff() {
-
-                price.textContent = "2332"
-            }
         
+        //const input = document.getElementById('start_date');
+       const price = document.getElementById("price");
+       
+       var start = document.getElementsByName("PickUpDate")[0];
+       var end = document.getElementsByName("DropDate")[0];
+       start.addEventListener('change', calcDiff);
+       end.addEventListener('change', calcDiff);
+       var button = document.getElementsByName("reservate")[0];
+
+      
+      var fromValidate = document.getElementById("date-from-validate");
+        var toValidate = document.getElementById("date-to-validate");
+       
+          function popup(){
+              alert("Your reservation is succesfully taken!");
+          }
+
+        function calcDiff() {
+
+            var startDate = new Date(start.value);
+            var endDate = new Date(end.value);
+            const currentDate = new Date();
+
+            
+
+            var diff = endDate.getTime() - startDate.getTime();
+            
+            var days = diff / (1000*3600*24);
+            console.log(days);
+            console.log(start.value=="");
+            if(start.value == "" || end.value==""){
+                button.disabled = true;
+                return;
+            }
+            if(startDate < currentDate ){
+                fromValidate.textContent = "Enter valid date!";
+                button.disabled = true;
+                return;
+            }
+            else{
+                fromValidate.textContent = "";
+                button.disabled = false;
+            }
+            if(endDate < startDate){
+                toValidate.textContent = "Enter valid date!";
+                button.disabled = true;
+                return;
+            }
+            else{
+                toValidate.textContent = "";
+                button.disabled = false;
+            }
+            if(diff < 0){
+                toValidate.textContent = "To date can't be less than from date!";
+                button.disabled = true;
+                return;
+            }
+            else {
+                toValidate.textContent = "";
+                button.disabled = false;
+            }
+            button.disabled = false;
+            price.value = (days * @Convert.ToInt32(priceDay))
+            console.log(price.value)
+        }
+
     </script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     
 </body>
