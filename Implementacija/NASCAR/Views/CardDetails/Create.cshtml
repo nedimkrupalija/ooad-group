@@ -58,7 +58,10 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <form>
+        <input class="breadcrumb-item active" value="Back to List" onclick="history.back()">
+    </form>
+
 </div>
 
 @section Scripts {
