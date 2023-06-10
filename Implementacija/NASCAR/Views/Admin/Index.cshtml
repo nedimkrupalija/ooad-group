@@ -25,24 +25,43 @@
 </head>
 
 <body>
-    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <div class="col-md-6">
-            <div class="btn-group d-flex justify-content-center gap-3">
-                <a asp-controller="Vehicles" asp-action="Index" class="btn btn-primary square-button">
-                    <i class="fa fa-car fa-5x"></i>
-                    <span class="d-block mt-3">Vehicles</span>
-                </a>
-                <a asp-controller="Reservations" asp-action="Index" class="btn btn-primary square-button">
-                    <i class="fa fa-calendar fa-5x"></i>
-                    <span class="d-block mt-3">Reservations</span>
-                </a>
-                <a asp-controller="DriversLicences" asp-action="Index" class="btn btn-primary square-button">
-                    <i class="fa fa-users fa-5x"></i>
-                    <span class="d-block mt-3">Licences</span>
-                </a>
+  
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col ">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Reservations</h4>
+                    <p class="card-text">View all reservations in system.</p>
+                    <a asp-controller="Reservations" asp-action="Index" class="card-link">View all</a>
+                
+                </div>
+            </div>
+        </div>
+        <div class="col ">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Vehicles</h4>  
+                    <p class="card-text">View all vehicles in system.</p>
+                    <a asp-controller="Home" asp-action="Index" class="card-link">View all</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="col ">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Users</h4>   
+                    <p class="card-text">View all users in system.</p>
+                    <a asp-controller="Admin" asp-action="Users" class="card-link">View all</a>
+
+                </div>
             </div>
         </div>
     </div>
+
+
+   
 </body>
 
 

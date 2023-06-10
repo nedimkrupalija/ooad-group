@@ -14,7 +14,7 @@ namespace NASCAR.Data
         public DbSet<RegisteredUser> RegisteredUser { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
-        public DbSet<DriversLicence> DriversLicence { get; set; }
+       
         public DbSet<VehicleAddress> VehicleAddress { get; set; }
         public DbSet<CardDetails> CardDetails { get; set; } 
         public DbSet<Discount> Discount { get; set; }
@@ -43,9 +43,7 @@ namespace NASCAR.Data
                 .WithOne(p => p.CardDetails);
                
             modelBuilder.Entity<Discount>().ToTable("Discount");
-            modelBuilder.Entity<DriversLicence>().ToTable("DriversLicence")
-                .HasOne(c => c.RegisteredUser)
-                .WithOne(p => p.Licence);
+           
             base.OnModelCreating(modelBuilder);
         }
 

@@ -4,7 +4,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Your reservations</h1>
+@if (User.IsInRole("Administartor"))
+{
+    <h1>All reservations</h1>
+}
+else
+{
+    <h1>Your reservations</h1>
+}
 
 
 
@@ -31,6 +38,7 @@
                 <td class="mx-auto">@item.DropDate</td>
                 <td class="mx-auto">@item.PaymentType</td>
                 <td class="mx-auto"><a class="btn btn-outline-info" asp-controller="Vehicles" asp-action="Details" asp-route-id="@item.Vehicle.Id">Details</a></td>
+                
             </tr>
         }
 

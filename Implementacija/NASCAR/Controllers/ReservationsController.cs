@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NASCAR.Areas.Identity.Pages.Account;
@@ -19,21 +20,41 @@ namespace NASCAR.Controllers
     public class ReservationsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        
+        private readonly UserManager<RegisteredUser> _userManager;
 
-        public ReservationsController(ApplicationDbContext context)
+        public ReservationsController(ApplicationDbContext context, UserManager<RegisteredUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
             
         }
 
         // GET: Reservations
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Reservation.Include(r => r.Discount).Include(r => r.RegisteredUser).Include(r => r.Vehicle)
-                .Where(a => a.RegisteredUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            return View(await applicationDbContext.ToListAsync());
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var user = _userManager.FindByIdAsync(userId);
+            if (await _userManager.IsInRoleAsync(await user, "RegisteredUser"))
+            {
+                var applicationDbContext = _context.Reservation.Include(r => r.Discount).Include(r => r.RegisteredUser).Include(r => r.Vehicle)
+                    .Where(a => a.RegisteredUserId == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+                return View(await applicationDbContext.ToListAsync());
+            }
+            else
+            {
+                var applicationDbContext = _context.Reservation.Include(r => r.Discount).Include(r => r.RegisteredUser).Include(r => r.Vehicle);
+                return View(await applicationDbContext.ToListAsync());
+
+            }
+            
         }
+
+        public async Task<IActionResult> AllReservations()
+        {
+            var reservations = _context.Reservation;
+            return View(await reservations.ToListAsync());
+        }
+
 
         // GET: Reservations/Details/5
         public async Task<IActionResult> Details(int? id)
