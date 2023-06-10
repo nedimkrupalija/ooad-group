@@ -17,7 +17,7 @@ namespace NASCAR.Services
 
         }
 
-
+      
         public void SetReserved()
         {
             var reservations = _context.Reservation
