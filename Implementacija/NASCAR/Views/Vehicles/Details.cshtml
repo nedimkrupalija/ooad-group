@@ -30,6 +30,10 @@
     <li class="list-group-item">Color: @Model.Color</li>
     <li class="list-group-item">Number of seats: @Model.Seats</li>
     <li class="list-group-item">Number of doors: @Model.Doors</li>
+        @if (User.IsInRole("Administartor"))
+        {
+            <li class="list-group-item">Reservated: @Model.IsReserved</li>
+        }
   </ul>
   
 

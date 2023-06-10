@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NASCAR.Data;
 using NASCAR.Models;
 using System.Diagnostics;
 
 namespace NASCAR.Controllers
 {
+    [Authorize("Administrator")]
     public class AdminController : Controller
     {
 
@@ -23,6 +25,12 @@ namespace NASCAR.Controllers
 			 View(_context.Reservation.ToList()) :
 			 Problem("Entity set 'ApplicationDbContext.Vehicle'  is null.");
 		}
+
+        public IActionResult Users()
+        {
+            var users = _context.RegisteredUser;
+            return View(users.ToList());
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -9,9 +9,9 @@ namespace NASCAR.Models
 		[Key]
 		public int Id { get; set; }
 		[DisplayName("Street name:")]
-		[RegularExpression(@"/[a-z]/gi", ErrorMessage = "No digits allowed!")]
+		[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "No digits allowed!")]
 		public string StreetName { get; set; }
-		[RegularExpression(@"/[a-z]/gi", ErrorMessage = "No digits allowed!")]
+		[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "No digits allowed!")]
 		public string City { get; set; }
 		
 

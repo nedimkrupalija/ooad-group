@@ -53,6 +53,21 @@ namespace NASCAR.Controllers
         public IActionResult Create()
         {
             ViewData["VehicleAddressId"] = new SelectList(_context.VehicleAddress, "Id", "Id");
+            ViewData["VehicleCity"] = new SelectList(_context.VehicleAddress, "City", "City");
+            List<string> transmission = new();
+            List<string> category = new();
+            int sizeT = Enum.GetNames(typeof(TransmissionEnum)).Length;
+            int sizeC = Enum.GetNames(typeof(CategoryEnum)).Length;
+            for (int i = 0; i < sizeT; i++)
+            {
+                transmission.Add(Enum.GetName(typeof(TransmissionEnum),i));                
+            }
+            for(int i=0;i<sizeC;i++)
+            {
+                category.Add(Enum.GetName(typeof(CategoryEnum), i));
+            }
+            ViewData["Transmission"] = new SelectList(transmission);
+            ViewData["Category"] = new SelectList(category);
             return View();
         }
 

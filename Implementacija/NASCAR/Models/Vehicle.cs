@@ -55,7 +55,8 @@ namespace NASCAR.Models
         [Required]
         public int? Doors { get; set; }
 
-        
+
+       
 
         public Vehicle()
         {

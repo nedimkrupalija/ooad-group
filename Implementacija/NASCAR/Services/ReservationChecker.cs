@@ -17,7 +17,7 @@ namespace NASCAR.Services
 
         }
 
-
+      
         public void SetReserved()
         {
             var reservations = _context.Reservation
@@ -38,9 +38,7 @@ namespace NASCAR.Services
                 }
                 _context.Vehicles.Update(reservation.Vehicle);
             }
-           
-           
-
+          
         }
 
     }
