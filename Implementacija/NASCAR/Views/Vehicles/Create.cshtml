@@ -1,7 +1,11 @@
 ﻿@model NASCAR.Models.Vehicle
-
+@using NASCAR.Services
+@inject AddressNameConverter _addressNameConverter;
 @{
     ViewData["Title"] = "Create";
+    var cities = (ViewData["VehicleCity"] as SelectList).ToList();
+    var city = "";
+
 }
 
 <h1>Create</h1>
@@ -22,19 +26,19 @@
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ModelYear" class="control-label"></label>
-                <input asp-for="ModelYear" class="form-control" />
-                <span asp-validation-for="ModelYear" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsReserved" class="control-label"></label>
-                <input asp-for="IsReserved" class="form-control" />
-                <span asp-validation-for="IsReserved" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="ModelYear" class="control-label"></label>
+                    <input asp-for="ModelYear" class="form-control" />
+                    <span asp-validation-for="ModelYear" class="text-danger"></span>
+                </div>
+                <div class="invisible col">
+                    <input value="False" asp-for="IsReserved" class="form-control" />
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Transmission" class="control-label"></label>
-                <input asp-for="Transmission" class="form-control" />
+                <select asp-for="Transmission" class="form-select" asp-items="ViewBag.Transmission"></select>
                 <span asp-validation-for="Transmission" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -42,13 +46,25 @@
                 <input asp-for="Mileage" class="form-control" />
                 <span asp-validation-for="Mileage" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="VehicleAddressId" class="control-label"></label>
-                <select asp-for="VehicleAddressId" class ="form-control" asp-items="ViewBag.VehicleAddressId"></select>
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="VehicleAddress.City" class="form-label mt-4"></label>
+                    <select onclick="select()" class="form-select" id="citySelect" >
+                        @foreach (var option in cities)
+                        {
+                            city = option.Text;
+                            <option value=@_addressNameConverter.GetAddressId(@option.Text)>@option.Text</option>
+                          
+                        }
+                    </select>
+                </div>
+                <div class="form-group invisible col">
+                    <input asp-for="VehicleAddressId" class="form-control" value=""/>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
+                <select asp-for="Category" class="form-select" asp-items="ViewBag.Category"></select>
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -86,6 +102,19 @@
 <div>
     <a asp-action="Index">Back to Home</a>
 </div>
+
+
+<script>
+    function select(){
+        var cityElement = document.getElementById("citySelect");
+        var city = cityElement.options[cityElement.selectedIndex].text;
+
+        var addressId = document.getElementsByName("VehicleAddressId")[0];
+        addressId.value = cityElement.value;
+        console.log("aaa");
+    }
+
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
