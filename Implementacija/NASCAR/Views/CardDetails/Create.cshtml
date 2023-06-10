@@ -57,8 +57,13 @@
     </div>
 </div>
 
-<div class="mt-2">
-    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+
+<div>
+    <form>
+        <input class="breadcrumb-item active" value="Back to List" onclick="history.back()">
+    </form>
+
+
 </div>
 
 @section Scripts {
