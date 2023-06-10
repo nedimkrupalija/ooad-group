@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NASCAR.Data;
 using NASCAR.Models;
+using NASCAR.Services;
 using System.Diagnostics;
 
 namespace NASCAR.Controllers
@@ -15,6 +17,38 @@ namespace NASCAR.Controllers
             _logger = logger;
             _context = context;
         }
+
+        [HttpPost]
+        public IActionResult search(string name, string year, string price, string city)
+        {
+            var vehicles =  _context.Vehicles
+                .Include(p => p.VehicleAddress)
+                .ToList();
+            FilterBuilder _filterBuilder = new();
+       
+            _filterBuilder.SetYear(year);
+            try
+            {
+                _filterBuilder.SetPrice(Convert.ToInt32(price));
+            }
+            catch(Exception ex)
+            {
+                _filterBuilder.SetPrice(99999);
+            }
+           
+            _filterBuilder.SetCarName(name);
+            
+            _filterBuilder.SetCity(city);
+
+            var filter = _filterBuilder.Build();
+
+            vehicles = filter.GetVehicles(vehicles);
+
+            
+            return View(nameof(Index), vehicles);
+
+        }
+
 
         public IActionResult Index()
         {

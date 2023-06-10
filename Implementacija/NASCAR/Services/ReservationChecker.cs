@@ -18,7 +18,7 @@ namespace NASCAR.Services
         }
 
       
-        public void SetReserved()
+        public  async Task SetReservedAsync() 
         {
             var reservations = _context.Reservation
                 .Include(m => m.Vehicle).ToList();
@@ -36,7 +36,8 @@ namespace NASCAR.Services
                 {
                     reservation.Vehicle.IsReserved = true;
                 }
-                _context.Vehicles.Update(reservation.Vehicle);
+                
+                 _context.Vehicles.Update(reservation.Vehicle);
             }
           
         }
