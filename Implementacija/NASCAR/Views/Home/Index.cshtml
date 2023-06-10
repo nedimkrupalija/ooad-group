@@ -1,5 +1,11 @@
-﻿@{
+﻿@using NASCAR.Services;
+@inject ReservationChecker _reservationChecker;
+
+@{
 	ViewData["Title"] = "Home Page";
+
+	_reservationChecker.SetReserved();
+
 }
 <head>
 	
