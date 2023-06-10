@@ -24,15 +24,15 @@ namespace NASCAR.Models
         public string? Price { get; set; }
 
         [ForeignKey("RegisteredUser")]
-        public string RegisteredUserId { get; set;}
+        public string? RegisteredUserId { get; set;}
         public RegisteredUser? RegisteredUser { get; set; }
 
         [ForeignKey("Vehicle")]
         public int VehicleId { get; set; }
-        public Vehicle Vehicle { get; set; }
+        public Vehicle? Vehicle { get; set; }
 
         [ForeignKey("Discount")]
-        public int DiscountId { get; set; }
+        public int? DiscountId { get; set; }
         public Discount? Discount { get; set; }
 
         [DisplayName("Payment type")]
@@ -42,6 +42,9 @@ namespace NASCAR.Models
         public Reservation()
         {
         }
+
+        
+
     }
 
 }
