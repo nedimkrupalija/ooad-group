@@ -84,11 +84,7 @@ namespace NASCAR.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,PickUpDate,DropDate,Price,RegisteredUserId,VehicleId,DiscountId,PaymentType")] Reservation reservation)
         {
-            reservation.RegisteredUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            reservation.PickUpDate = "2023-06-08";
-            
-                
+            reservation.RegisteredUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;        
 
             if (ModelState.IsValid)
             {
@@ -176,7 +172,7 @@ namespace NASCAR.Controllers
                 .Include(r => r.Vehicle)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            reservation.Vehicle.IsReserved = false;
+            
             if (reservation == null)
             {
                 return NotFound();
@@ -196,7 +192,9 @@ namespace NASCAR.Controllers
                 return Problem("Entity set 'ApplicationDbContext.Reservation'  is null.");
             }
             var reservation = await _context.Reservation.FindAsync(id);
-            if (reservation != null)
+			reservation.Vehicle.IsReserved = false;
+            _context.Update(reservation.Vehicle);
+			if (reservation != null)
             {
                 _context.Reservation.Remove(reservation);
             }
