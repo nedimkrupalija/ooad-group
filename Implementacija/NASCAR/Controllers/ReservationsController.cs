@@ -85,10 +85,9 @@ namespace NASCAR.Controllers
         public async Task<IActionResult> Create([Bind("Id,PickUpDate,DropDate,Price,RegisteredUserId,VehicleId,DiscountId,PaymentType")] Reservation reservation)
         {
             reservation.RegisteredUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var vehicle = await _context.Vehicles
-                .FirstOrDefaultAsync(m => m.Id == reservation.VehicleId);
-            vehicle.IsReserved = true;
-            _context.Update(vehicle);
+
+            reservation.PickUpDate = "2023-06-08";
+            
                 
 
             if (ModelState.IsValid)
