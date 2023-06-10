@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NASCAR.Data;
 using NASCAR.Models;
 using System.Diagnostics;
 
 namespace NASCAR.Controllers
 {
+    [Authorize("Administrator")]
     public class AdminController : Controller
     {
 
