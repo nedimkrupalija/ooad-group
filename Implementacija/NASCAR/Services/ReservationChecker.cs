@@ -38,9 +38,7 @@ namespace NASCAR.Services
                 }
                 _context.Vehicles.Update(reservation.Vehicle);
             }
-           
-           
-
+          
         }
 
     }
