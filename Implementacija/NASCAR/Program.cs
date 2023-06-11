@@ -54,8 +54,8 @@ builder.Services.AddScoped<Filter>();
 
 
 
-builder.Services.AddScoped<IPayment, CashPayment>();
-builder.Services.AddScoped<IPayment, CardPayment>();
+builder.Services.AddScoped<IStrategyPayment, CashPayment>();
+builder.Services.AddScoped<IStrategyPayment, CardPayment>();
 
 builder.Services.ConfigureApplicationCookie(o => {
     o.ExpireTimeSpan = TimeSpan.FromDays(5);
