@@ -46,7 +46,7 @@ namespace NASCAR.Models
         [Required]
         public string? Picture { get; set; }
 
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "No digits allowed")]
+        [RegularExpression(@"^[a-zA-Z ]+$", ErrorMessage = "No digits allowed")]
         [Required]
         public string? Color { get; set; }
         [RegularExpression(@"^[1-7]$", ErrorMessage = "Numbers 1-7")]
