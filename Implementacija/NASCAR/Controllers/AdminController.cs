@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace NASCAR.Controllers
 {
-    [Authorize("Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
 
