@@ -19,6 +19,12 @@ namespace NASCAR.Models
 		public VehicleAddress()
 		{
 		}
-	}
+
+        public VehicleAddress(string sreet,string city)
+        {
+			StreetName = sreet;
+			City = city;
+        }
+    }
 
 }

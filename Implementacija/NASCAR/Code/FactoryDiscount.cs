@@ -2,22 +2,23 @@
 namespace NASCAR.Code
 
 {
-    public interface IDiscount
+    public class NoDiscount : IDiscount
     {
-        double calculateDiscount(int days);
+        double IDiscount.calculateDiscount()
+        {
+            return 0.0;
+        }
     }
-
     public class WeeklyDiscount : IDiscount 
     {
-
-        double IDiscount.calculateDiscount(int days)
+        double IDiscount.calculateDiscount()
         {
             return 0.1;
         }
     }
     public class SuperDiscount : IDiscount
     {
-        double IDiscount.calculateDiscount(int days)
+        double IDiscount.calculateDiscount()
         {
             return 0.2;
         }
@@ -25,34 +26,11 @@ namespace NASCAR.Code
 
     public class MaxDiscount : IDiscount 
     {
-        double IDiscount.calculateDiscount(int days)
+        double IDiscount.calculateDiscount()
         {
             return 0.3;
         }
     }
 
-    public abstract class DiscountFactory
-    {
-        public abstract IDiscount GetDiscount(string name);
-    }
-
-    public class ConcreteDiscountFactory : DiscountFactory
-    {
-        public override IDiscount GetDiscount(string name)
-        {
-            switch (name)
-            {
-                case "Weekly":
-                    return new WeeklyDiscount();
-                case "Super":
-                    return new SuperDiscount();
-                case "Max":
-                    return new MaxDiscount();
-                default:
-                    throw new ApplicationException(string.Format("Vehicle '{0}' cannot be created", name));
-            }
-        }
-
-    }
 
 }
