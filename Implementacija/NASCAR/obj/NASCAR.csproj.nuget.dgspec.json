@@ -1,6 +1,19 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
+    "C:\\Users\\User\\Desktop\\ooad\\dd\\Implementacija\\NASCAR\\NASCAR.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\User\\Desktop\\ooad\\dd\\Implementacija\\NASCAR\\NASCAR.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\ooad\\dd\\Implementacija\\NASCAR\\NASCAR.csproj",
+        "projectName": "NASCAR",
+        "projectPath": "C:\\Users\\User\\Desktop\\ooad\\dd\\Implementacija\\NASCAR\\NASCAR.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\ooad\\dd\\Implementacija\\NASCAR\\obj\\",
+=======
     "C:\\Users\\Nedim Krupalija\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj": {}
   },
   "projects": {
@@ -12,13 +25,18 @@
         "projectPath": "C:\\Users\\Nedim Krupalija\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj",
         "packagesPath": "C:\\Users\\Nedim Krupalija\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Nedim Krupalija\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\obj\\",
+>>>>>>> main
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
           "C:\\Users\\Nedim Krupalija\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> main
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -97,7 +115,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+>>>>>>> main
         }
       }
     }
