@@ -48,6 +48,10 @@ builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 builder.Services.AddScoped<ReservationChecker>();
 builder.Services.AddScoped<AddressNameConverter>();
 builder.Services.AddScoped<UserManager<RegisteredUser>>();
+
+builder.Services.AddScoped<IPayment, CashPayment>();
+builder.Services.AddScoped<IPayment, CardPayment>();
+
 builder.Services.ConfigureApplicationCookie(o => {
     o.ExpireTimeSpan = TimeSpan.FromDays(5);
     o.SlidingExpiration = true;
