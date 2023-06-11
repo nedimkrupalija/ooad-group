@@ -21,7 +21,10 @@ namespace NASCAR.Code
         public int? Doors { get; set; }
 
 
-        abstract public Vehicle BuildVehicle();
+        public Vehicle BuildVehicle()
+        {
+            return new Vehicle(this);
+        }
 
         abstract public void SetDescription(string des);
 

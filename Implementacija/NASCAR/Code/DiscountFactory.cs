@@ -1,5 +1,4 @@
-﻿using 
-namespace NASCAR.Code
+﻿namespace NASCAR.Code
 {
     public  class DiscountFactory
     {

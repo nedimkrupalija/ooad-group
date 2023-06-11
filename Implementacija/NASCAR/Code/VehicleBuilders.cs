@@ -6,10 +6,6 @@ namespace NASCAR.Code
     {
         public SedanBuilder() { }
 
-        public override Vehicle BuildVehicle()
-        {
-            return new Vehicle(this);
-        }
 
         public override void SetDescription(string des)
         {
@@ -82,10 +78,6 @@ namespace NASCAR.Code
     {
         public SportsBuilder() { }
 
-        public override Vehicle BuildVehicle()
-        {
-            return new Vehicle(this);
-        }
 
         public override void SetDescription(string des)
         {
@@ -157,11 +149,6 @@ namespace NASCAR.Code
     {
         public SUVBuilder() { }
 
-        public override Vehicle BuildVehicle()
-        {
-            return new Vehicle(this);
-        }
-
         public override void SetDescription(string des)
         {
             Description = des;
@@ -232,10 +219,6 @@ namespace NASCAR.Code
     {
         public CoupeBuilder() { }
 
-        public override Vehicle BuildVehicle()
-        {
-            return new Vehicle(this);
-        }
 
         public override void SetDescription(string des)
         {
@@ -307,10 +290,6 @@ namespace NASCAR.Code
     {
         public CrossoverBuilder() { }
 
-        public override Vehicle BuildVehicle()
-        {
-            return new Vehicle(this);
-        }
 
         public override void SetDescription(string des)
         {
@@ -382,10 +361,6 @@ namespace NASCAR.Code
     {
         public MiniVanBuilder() { }
 
-        public override Vehicle BuildVehicle()
-        {
-            return new Vehicle(this);
-        }
 
         public override void SetDescription(string des)
         {
@@ -457,10 +432,6 @@ namespace NASCAR.Code
     {
         public VanBuilder() { }
 
-        public override Vehicle BuildVehicle()
-        {
-            return new Vehicle(this);
-        }
 
         public override void SetDescription(string des)
         {
@@ -532,10 +503,6 @@ namespace NASCAR.Code
     {
         public CabrioBuilder() { }
 
-        public override Vehicle BuildVehicle()
-        {
-            return new Vehicle(this);
-        }
 
         public override void SetDescription(string des)
         {
