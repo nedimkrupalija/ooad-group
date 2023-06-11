@@ -66,6 +66,9 @@ namespace NASCAR.Controllers
             {
                 category.Add(Enum.GetName(typeof(CategoryEnum), i));
             }
+
+
+
             ViewData["Transmission"] = new SelectList(transmission);
             ViewData["Category"] = new SelectList(category);
             return View();
@@ -79,6 +82,9 @@ namespace NASCAR.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([Bind("Id,Name,Price,ModelYear,IsReserved,Transmission,Mileage,VehicleAddressId,Category,Description,Picture,Color,Seats,Doors")] Vehicle vehicle)
         {
+           
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(vehicle);
