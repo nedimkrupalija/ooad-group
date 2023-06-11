@@ -128,8 +128,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/irfan/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservations/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/irfan/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservations/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/irfan/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Reservations/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXFN1Y2Nlc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/irfan/ooad-projekat/ooad-group-Rent-A-Car/Implementacija/NASCAR/Views/Shared/Error.cshtml]

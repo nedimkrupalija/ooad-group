@@ -1,6 +1,5 @@
 ﻿@model NASCAR.Models.Reservation
 
-
 @{
     ViewData["Title"] = "Rent";
 
@@ -38,7 +37,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label asp-for="Price" class="form-label mt-4">Total in BAM</label>
+                        <label asp-for="Price" class="form-label mt-2">Total price in BAM</label>
                         <p></p>
                         <input class="visible" class="form-control" placeholder="@ViewData["Price"] per day" id="priceTemp" readonly="" />
                     </div>
@@ -135,7 +134,8 @@
                 priceTemp.value = (days * @Convert.ToInt32(priceDay));
             }
             price.value = (days * @Convert.ToInt32(priceDay));
-            console.log(priceTemp.value)
+            console.log(priceTemp.value);
+            console.log(price.value);
         }
 
     </script>
