@@ -1,7 +1,6 @@
-﻿using NASCAR.Code;
-using NASCAR.Models;
+﻿using NASCAR.Models;
 
-namespace NASCAR.Code
+namespace NASCAR.Services
 {
 
     public abstract class VehicleBuilder : IVehicleBuilder
@@ -49,5 +48,5 @@ namespace NASCAR.Code
         abstract public void setPrice(double price);
         public abstract void setAddress(string street, string city);
     }
-  
+
 }

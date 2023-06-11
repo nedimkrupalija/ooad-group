@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using NASCAR.Areas.Identity.Pages.Account;
 using NASCAR.Data;
 using NASCAR.Models;
+using NASCAR.Services;
 
 namespace NASCAR.Controllers
 {
@@ -105,7 +106,18 @@ namespace NASCAR.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,PickUpDate,DropDate,Price,RegisteredUserId,VehicleId,DiscountId,PaymentType")] Reservation reservation)
         {
-            reservation.RegisteredUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;        
+            reservation.RegisteredUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var discountFactory = new ConcreteDiscountFactory();
+            DateTime to = DateTime.Parse(reservation.DropDate);
+            DateTime from = DateTime.Parse(reservation.PickUpDate);
+
+            int days = (int)(to - from).TotalDays;
+
+           
+            
+
+            var price = discountFactory.GetDiscount(days.ToString()).CalculateDiscount(reservation.Price);
+            reservation.Price = ((int)price).ToString();
 
             if (ModelState.IsValid)
             {

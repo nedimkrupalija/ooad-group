@@ -1,6 +1,6 @@
 ﻿using NASCAR.Models;
 
-namespace NASCAR.Code
+namespace NASCAR.Services
 {
     public class FlyWeightFactory : VehicleFlyweight
     {
