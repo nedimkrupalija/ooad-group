@@ -48,6 +48,11 @@ builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 builder.Services.AddScoped<ReservationChecker>();
 builder.Services.AddScoped<AddressNameConverter>();
 builder.Services.AddScoped<UserManager<RegisteredUser>>();
+builder.Services.AddScoped<VehicleAddress>();
+builder.Services.AddScoped<FilterBuilder>();
+builder.Services.AddScoped<Filter>();
+
+
 
 builder.Services.AddScoped<IPayment, CashPayment>();
 builder.Services.AddScoped<IPayment, CardPayment>();

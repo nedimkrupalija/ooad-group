@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -112,19 +113,30 @@ namespace NASCAR.Controllers
             return View();
         }
 
-        private int CalculateNumberOfDays(DateTime pickUpDate, DateTime dropDate)
+        public IActionResult Error()
         {
-            TimeSpan duration = dropDate.Date - pickUpDate.Date;
-            int numberOfDays = duration.Days + 1; // Add 1 to include both the pick-up and drop-off days
-            return numberOfDays;
+            return View();
         }
 
+        public IActionResult Success()
+        {
+            return View();
+        }
         // POST: Reservations/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,PickUpDate,DropDate,Price,RegisteredUserId,VehicleId,DiscountId,PaymentType")] Reservation reservation)
         {
             reservation.RegisteredUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+           
+            reservation.Price = ((int)(new FacadeDiscount(_context, new ConcreteDiscountFactory()).CalculateDiscount(reservation))).ToString();
+
+            if(reservation.Price == "-1")
+            {
+                return RedirectToAction(nameof(Error));
+            }
+
+            System.Console.WriteLine("abc");
 
             if (ModelState.IsValid)
             {
@@ -135,7 +147,7 @@ namespace NASCAR.Controllers
 
                 DateTime pickUpDate = DateTime.Parse(reservation.PickUpDate);
                 DateTime dropDate = DateTime.Parse(reservation.DropDate);
-                int numberOfDays = CalculateNumberOfDays(pickUpDate, dropDate);
+                int numberOfDays = 5;// CalculateNumberOfDays(pickUpDate, dropDate);
 
                 double totalPrice = 0;
 
@@ -151,7 +163,7 @@ namespace NASCAR.Controllers
                 reservation.Price = totalPrice.ToString("0.00");
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(Success));
             }
 
             ViewData["DiscountId"] = new SelectList(_context.Discount, "Id", "Id", reservation.DiscountId);

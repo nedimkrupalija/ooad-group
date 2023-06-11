@@ -1,11 +1,13 @@
 ﻿@using NASCAR.Services;
+@using NASCAR.Models;
+@model System.Collections.Generic.List<Vehicle>;
 @inject ReservationChecker _reservationChecker;
-
+@inject VehicleAddress _vehicleAddress;
 @{
-	ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home Page";
 
-	_reservationChecker.SetReserved();
-
+    await _reservationChecker.SetReservedAsync();
+    var addresses = _vehicleAddress.GetAll();
 }
 <head>
 	
@@ -14,12 +16,50 @@
 <body>
 	<div class="text-center">
 		<h1 class="display-4">Welcome</h1>
-		<form action="">
-			<input type="text" placeholder="Search.." name="search">
-			<button type="submit"><i class="fa fa-search"></i></button>
-		</form>
-		<br />
 	</div>
+	<p>Filters</p>
+	<form asp-action="search">
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<div class="row row-cols-1 row-cols-md-2 g-4">
+		<div class="col">
+			<div class="form-group">
+      <label for="exampleSelect1" class="form-label">City</label>
+      <select class="form-select" id="exampleSelect1" name="city">
+		  @foreach(var address in addresses)
+					{
+						<option>@address.City</option>
+					}
+      </select>
+    </div>
+	</div>
+	<div class="col">
+			<div class="form-group">
+				<label class="form-label">Up to price</label>
+				<input class="form-control" type="text" placeholder="Price..." name="price"/>
+			</div>
+		</div>
+	<div class="col">
+		<div class=form-group>
+			<label class="form-label">From year</label>
+			<input class="form-control" type="text" placeholder="Year..." name="year" />
+		</div>
+	</div>
+	<div class="col">
+		<div class=form-group>
+			<label class="form-label">Name</label>
+			<input class="form-control" type="text" placeholder="Search..." name="name" />
+			
+		</div>
+	</div>
+		</div>
+		
+	
+	<div class="mt-2">
+			<input type="submit" value="search" class="btn btn-primary" />	
+	
+		</div>
+		</form>
+	
 	
 	<div class="row row-cols-1 row-cols-md-2 g-4">
 

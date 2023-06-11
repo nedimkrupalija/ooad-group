@@ -1,6 +1,5 @@
 ﻿@model NASCAR.Models.Reservation
 
-
 @{
     ViewData["Title"] = "Rent";
 
@@ -40,13 +39,20 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label asp-for="Price" class="form-label mt-4">Total price in BAM</label>
+                        <label asp-for="Price" class="form-label mt-2">Total price in BAM</label>
                         <p></p>
+<<<<<<< HEAD
                         <input class="visible form-control" asp-for="Price" placeholder="@ViewData["Price"] per day" id="price" readonly style="width: 150px;" />
+=======
+                        <input class="visible" class="form-control" placeholder="@ViewData["Price"] per day" id="priceTemp" readonly="" />
+>>>>>>> 8cc592dce03df59505f67e08672406310bd1768e
                     </div>
                     <br />
                     <div class="form-group">
                         <input name="reservate" onclick="popup()" type="submit" value="Reservate" class="btn btn-primary" disabled />
+                    </div>
+                    <div class="col">
+                        <input class="invisible" asp-for="Price" class="form-control" id="price" />
                     </div>
                 </div>
                     <input value=@veh asp-for="VehicleId" class="form-control invisible" placeholder="@ViewData["VehicleId"]" readonly="" id="vehicle_id" />
@@ -58,6 +64,7 @@
     <a asp-controller="Home" asp-action="Index" class="mt-2 btn btn-outline-danger">Cancel</a>
 </div>
 
+<<<<<<< HEAD
 <script>
         const price = document.getElementById("price");
         var start = document.getElementsByName("PickUpDate")[0];
@@ -66,6 +73,21 @@
         end.addEventListener('change', calcDiff);
         var button = document.getElementsByName("reservate")[0];
         var fromValidate = document.getElementById("date-from-validate");
+=======
+    <script>
+        
+        //const input = document.getElementById('start_date');
+        const priceTemp = document.getElementById("priceTemp");
+       const price = document.getElementById("price");
+       var start = document.getElementsByName("PickUpDate")[0];
+       var end = document.getElementsByName("DropDate")[0];
+       start.addEventListener('change', calcDiff);
+       end.addEventListener('change', calcDiff);
+       var button = document.getElementsByName("reservate")[0];
+
+      
+      var fromValidate = document.getElementById("date-from-validate");
+>>>>>>> 8cc592dce03df59505f67e08672406310bd1768e
         var toValidate = document.getElementById("date-to-validate");
 
     function popup() {
@@ -79,10 +101,66 @@
         var diff = endDate.getTime() - startDate.getTime();
         var days = diff / (1000 * 3600 * 24);
 
+<<<<<<< HEAD
         if (start.value === "" || end.value === "") {
             price.value = "";
             button.disabled = true;
             return;
+=======
+            
+
+            var diff = endDate.getTime() - startDate.getTime();
+            
+            var days = diff / (1000*3600*24);
+            console.log(days);
+            console.log(start.value=="");
+            if(start.value == "" || end.value==""){
+                button.disabled = true;
+                return;
+            }
+            if(startDate < currentDate ){
+                fromValidate.textContent = "Enter valid date!";
+                button.disabled = true;
+                return;
+            }
+            else{
+                fromValidate.textContent = "";
+                button.disabled = false;
+            }
+            if(endDate < startDate){
+                toValidate.textContent = "Enter valid date!";
+                button.disabled = true;
+                return;
+            }
+            else{
+                toValidate.textContent = "";
+                button.disabled = false;
+            }
+            if(diff < 0){
+                toValidate.textContent = "To date can't be less than from date!";
+                button.disabled = true;
+                return;
+            }
+            else {
+                toValidate.textContent = "";
+                button.disabled = false;
+            }
+            button.disabled = false;
+            if(days>=7 && days<=15)
+            {
+                priceTemp.value = (days * @Convert.ToInt32(priceDay))*0.8;
+            }
+            else if(days >15)
+            {
+                priceTemp.value = (days * @Convert.ToInt32(priceDay)) * 0.7;
+            }
+            else{
+                priceTemp.value = (days * @Convert.ToInt32(priceDay));
+            }
+            price.value = (days * @Convert.ToInt32(priceDay));
+            console.log(priceTemp.value);
+            console.log(price.value);
+>>>>>>> 8cc592dce03df59505f67e08672406310bd1768e
         }
 
         if (startDate < currentDate) {

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Source\\Repos\\nedimkrupalija\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj": {}
+    "C:\\Users\\irfan\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Source\\Repos\\nedimkrupalija\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj": {
+    "C:\\Users\\irfan\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Source\\Repos\\nedimkrupalija\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj",
+        "projectUniqueName": "C:\\Users\\irfan\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj",
         "projectName": "NASCAR",
-        "projectPath": "C:\\Users\\PC\\Source\\Repos\\nedimkrupalija\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Source\\Repos\\nedimkrupalija\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\obj\\",
+        "projectPath": "C:\\Users\\irfan\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj",
+        "packagesPath": "C:\\Users\\irfan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\irfan\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\irfan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

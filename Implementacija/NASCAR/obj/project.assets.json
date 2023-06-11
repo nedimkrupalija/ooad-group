@@ -10738,19 +10738,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PC\\.nuget\\packages\\": {}
+    "C:\\Users\\irfan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\Source\\Repos\\nedimkrupalija\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj",
+      "projectUniqueName": "C:\\Users\\irfan\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj",
       "projectName": "NASCAR",
-      "projectPath": "C:\\Users\\PC\\Source\\Repos\\nedimkrupalija\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj",
-      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\Source\\Repos\\nedimkrupalija\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\obj\\",
+      "projectPath": "C:\\Users\\irfan\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\NASCAR.csproj",
+      "packagesPath": "C:\\Users\\irfan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\irfan\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\irfan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10834,5 +10834,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\irfan\\ooad-projekat\\ooad-group-Rent-A-Car\\Implementacija\\NASCAR\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
