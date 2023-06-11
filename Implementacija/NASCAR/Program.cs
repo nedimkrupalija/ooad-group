@@ -51,6 +51,8 @@ builder.Services.AddScoped<UserManager<RegisteredUser>>();
 builder.Services.AddScoped<VehicleAddress>();
 builder.Services.AddScoped<FilterBuilder>();
 builder.Services.AddScoped<Filter>();
+
+
 builder.Services.ConfigureApplicationCookie(o => {
     o.ExpireTimeSpan = TimeSpan.FromDays(5);
     o.SlidingExpiration = true;

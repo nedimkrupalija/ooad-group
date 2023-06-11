@@ -1,6 +1,6 @@
 ﻿using NASCAR.Models;
 
-namespace NASCAR.Code
+namespace NASCAR.Services
 {
     public interface IVehicleBuilder
     {
@@ -10,7 +10,7 @@ namespace NASCAR.Code
         void setReserved(bool reserved);
         void setColor(string color);
         void setCategory();
-        void setPrice(double  price);
+        void setPrice(double price);
         void setDoors(int doors);
         void SetSeats(int seats);
         void SetMileage(double mileage);

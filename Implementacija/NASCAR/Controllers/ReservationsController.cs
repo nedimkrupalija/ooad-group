@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Policy;
@@ -13,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using NASCAR.Areas.Identity.Pages.Account;
 using NASCAR.Data;
 using NASCAR.Models;
+using NASCAR.Services;
 
 namespace NASCAR.Controllers
 {
@@ -98,6 +100,15 @@ namespace NASCAR.Controllers
             return View();
         }
 
+        public IActionResult Error()
+        {
+            return View();
+        }
+
+        public IActionResult Success()
+        {
+            return View();
+        }
         // POST: Reservations/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -105,13 +116,22 @@ namespace NASCAR.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,PickUpDate,DropDate,Price,RegisteredUserId,VehicleId,DiscountId,PaymentType")] Reservation reservation)
         {
-            reservation.RegisteredUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;        
+            reservation.RegisteredUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+           
+            reservation.Price = ((int)(new FacadeDiscount(_context, new ConcreteDiscountFactory()).CalculateDiscount(reservation))).ToString();
+
+            if(reservation.Price == "-1")
+            {
+                return RedirectToAction(nameof(Error));
+            }
+
+            System.Console.WriteLine("abc");
 
             if (ModelState.IsValid)
             {
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(Success));
             }
             ViewData["DiscountId"] = new SelectList(_context.Discount, "Id", "Id", reservation.DiscountId);
             ViewData["RegisteredUserId"] = new SelectList(_context.RegisteredUser, "Id", "Id", reservation.RegisteredUserId);

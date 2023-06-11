@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace NASCAR.Models
 {
     
-    public abstract class Discount
+    public class Discount 
     {
         [Key]
         public int Id { get; set; }

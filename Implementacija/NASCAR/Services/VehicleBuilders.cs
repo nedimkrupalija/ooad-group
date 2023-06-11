@@ -1,8 +1,8 @@
 ﻿using NASCAR.Models;
 
-namespace NASCAR.Code
+namespace NASCAR.Services
 {
-    public class SedanBuilder  : VehicleBuilder
+    public class SedanBuilder : VehicleBuilder
     {
         public SedanBuilder() { }
 
