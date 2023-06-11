@@ -38,7 +38,7 @@ namespace NASCAR.Services
                     i--;
                     continue;
                 }
-                if(city!=null && !vehicle.VehicleAddress.City.Contains(city, StringComparison.OrdinalIgnoreCase))
+                if(city!="All" && city!=null && !vehicle.VehicleAddress.City.Contains(city, StringComparison.OrdinalIgnoreCase))
                 {
                     vehicles.Remove(vehicle);
                     i--;
