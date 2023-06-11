@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace NASCAR.Models
 {
     
-    public class Discount
+    public abstract class Discount
     {
         [Key]
         public int Id { get; set; }
@@ -15,6 +15,8 @@ namespace NASCAR.Models
         public Double? DiscountPercent { get; set; }
         
         public Double? DiscountTotal { get; set; }
+
     }
+
 }
 

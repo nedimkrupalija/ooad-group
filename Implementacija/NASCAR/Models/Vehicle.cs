@@ -70,13 +70,13 @@ namespace NASCAR.Models
             IsReserved = builder.IsReserved;
             Transmission = builder.Transmission;
             Mileage = builder.Mileage;
-            VehicleAddressId = builder.AddressId;
             Category = builder.Category;
             Description = builder.Description;
             Picture = builder.Picture;
             Color = builder.Color;
             Seats = builder.Seats;
             Doors = builder.Doors;
+            VehicleAddress = builder.Address;
         }
        
 
