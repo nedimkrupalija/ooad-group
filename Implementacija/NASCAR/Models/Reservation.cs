@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NASCAR.Models
 {
-
     public class Reservation
     {
         [Key]
@@ -24,7 +23,7 @@ namespace NASCAR.Models
         public string? Price { get; set; }
 
         [ForeignKey("RegisteredUser")]
-        public string? RegisteredUserId { get; set;}
+        public string? RegisteredUserId { get; set; }
         public RegisteredUser? RegisteredUser { get; set; }
 
         [ForeignKey("Vehicle")]
@@ -36,15 +35,10 @@ namespace NASCAR.Models
         public Discount? Discount { get; set; }
 
         [DisplayName("Payment type")]
-        [EnumDataType(typeof(PaymentEnum))]
-        public PaymentEnum? PaymentType { get; set; }
+        public PaymentEnum PaymentType { get; set; }
 
         public Reservation()
         {
         }
-
-        
-
     }
-
 }

@@ -53,6 +53,10 @@ builder.Services.AddScoped<FilterBuilder>();
 builder.Services.AddScoped<Filter>();
 
 
+
+builder.Services.AddScoped<IPayment, CashPayment>();
+builder.Services.AddScoped<IPayment, CardPayment>();
+
 builder.Services.ConfigureApplicationCookie(o => {
     o.ExpireTimeSpan = TimeSpan.FromDays(5);
     o.SlidingExpiration = true;
