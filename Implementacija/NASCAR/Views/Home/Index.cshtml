@@ -25,6 +25,7 @@
 			<div class="form-group">
       <label for="exampleSelect1" class="form-label">City</label>
       <select class="form-select" id="exampleSelect1" name="city">
+		  <option>All</option>
 		  @foreach(var address in addresses)
 					{
 						<option>@address.City</option>

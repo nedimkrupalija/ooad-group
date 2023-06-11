@@ -34,8 +34,8 @@
         {
             try
             {
-                if (Convert.ToInt32(year) > 1900 && Convert.ToInt32(year) < 2023)
-                    this.year = year;
+                Convert.ToInt32(year);
+                this.year = year;
             }
             catch (Exception)
             {

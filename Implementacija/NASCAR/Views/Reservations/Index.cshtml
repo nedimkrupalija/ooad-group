@@ -23,7 +23,11 @@ else
           <th scope="col">From date</th>
           <th scope="col">To date</th>
           <th scope="col">Payment type</th>
-          <th scope="col">Vehicle details</th>
+          @if(User.IsInRole("Administrator"))
+            {
+                <th scope="col">User</th>
+            }
+            <th scope="col">Vehicle details</th>
         </tr>
     </thead>
     <tbody>
@@ -37,6 +41,10 @@ else
                 <td class="mx-auto">@item.PickUpDate</td>
                 <td class="mx-auto">@item.DropDate</td>
                 <td class="mx-auto">@item.PaymentType</td>
+                @if (User.IsInRole("Administrator"))
+                {
+                    <td class="mx-auto">@item.RegisteredUser.Email</td>
+                }
                 <td class="mx-auto"><a class="btn btn-outline-info" asp-controller="Vehicles" asp-action="Details" asp-route-id="@item.Vehicle.Id">Details</a></td>
                 
             </tr>
