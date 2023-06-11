@@ -31,7 +31,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label asp-for="PaymentType" class="control-label">Payment type (10% discount for card - calculated after checkout)</label>
+                    <label asp-for="PaymentType" class="control-label">Payment type (10% discount for card - added after checkout)</label>
                     <select asp-for="PaymentType" class="form-control" asp-items="ViewBag.PaymentType"></select>
                     <span asp-validation-for="PaymentType" class="text-danger"></span>
                     <br />
