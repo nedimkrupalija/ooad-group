@@ -1,4 +1,5 @@
-﻿using NASCAR.Data;
+﻿using NASCAR.Code;
+using NASCAR.Data;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -62,6 +63,22 @@ namespace NASCAR.Models
         {
         }
 
+        public Vehicle(VehicleBuilder builder)
+        {
+            Name = builder.Name;
+            Price = builder.Price;
+            ModelYear = builder.ModelYear;
+            IsReserved = builder.IsReserved;
+            Transmission = builder.Transmission;
+            Mileage = builder.Mileage;
+            Category = builder.Category;
+            Description = builder.Description;
+            Picture = builder.Picture;
+            Color = builder.Color;
+            Seats = builder.Seats;
+            Doors = builder.Doors;
+            VehicleAddress = builder.Address;
+        }
        
 
     }
