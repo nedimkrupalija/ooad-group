@@ -60,7 +60,10 @@
 	
 		</div>
 		</form>
+		@if(User.IsInRole("Administrator"))
+		{
 	<a class="btn btn-outline-primary" asp-controller="Vehicles" asp-action="Create">Add new</a>
+		}
 	
 	<div class="row row-cols-1 row-cols-md-2 g-4">
 
@@ -75,7 +78,7 @@
 				  <div class="card-body">
 					<h5 class="card-title text-center">@Data.Name</h5>
 					<p class="card-text text-center">@Data.Mileage km</p>
-					<p class="card-text text-center">@Data.Price BAM</p
+					<p class="card-text text-center">@Data.Price BAM/day</p
 					<p class="card-text text-center">@Enum.GetName(typeof(TransmissionEnum), Data.Transmission)</p>
 					@if(User.IsInRole("Administrator"))
 							{
