@@ -22,11 +22,11 @@ namespace NASCAR.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<RegisteredUser> _userManager;
-        private readonly IPayment _payment;
-        private readonly IPayment _cashPayment;
-        private readonly IPayment _cardPayment;
+        private readonly IStrategyPayment _payment;
+        private readonly IStrategyPayment _cashPayment;
+        private readonly IStrategyPayment _cardPayment;
 
-        public ReservationsController(ApplicationDbContext context, UserManager<RegisteredUser> userManager, IPayment payment, IPayment cashPayment, IPayment cardPayment)
+        public ReservationsController(ApplicationDbContext context, UserManager<RegisteredUser> userManager, IStrategyPayment payment, IStrategyPayment cashPayment, IStrategyPayment cardPayment)
         {
             _context = context;
             _userManager = userManager;
@@ -128,15 +128,35 @@ namespace NASCAR.Controllers
         public async Task<IActionResult> Create([Bind("Id,PickUpDate,DropDate,Price,RegisteredUserId,VehicleId,DiscountId,PaymentType")] Reservation reservation)
         {
             reservation.RegisteredUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-           
+            var oldPrice = reservation.Price;
             reservation.Price = ((int)(new FacadeDiscount(_context, new ConcreteDiscountFactory()).CalculateDiscount(reservation))).ToString();
 
-            if(reservation.Price == "-1")
+            if (reservation.Price == "-1")
             {
                 return RedirectToAction(nameof(Error));
             }
+            var difference = Convert.ToDouble(oldPrice) - Convert.ToDouble(reservation.Price);
+            var percent = difference / Convert.ToDouble(oldPrice);
+            if (reservation.PaymentType == PaymentEnum.Card)
+                percent += 0.1;
+            var discount = new Discount(percent, difference);
+
+            _context.Discount.Add(discount);
+            await _context.SaveChangesAsync();
+           
 
             System.Console.WriteLine("abc");
+
+            reservation.DiscountId = discount.Id;
+
+            if (reservation.PaymentType == PaymentEnum.Cash)
+            {
+                reservation.Price = (_cashPayment.CalculateThePrice(Convert.ToDouble(reservation.Price))).ToString();
+            }
+            else if (reservation.PaymentType == PaymentEnum.Card)
+            {
+                reservation.Price = (_cardPayment.CalculateThePrice(Convert.ToDouble(reservation.Price))).ToString();
+            }
 
             if (ModelState.IsValid)
             {
@@ -144,23 +164,7 @@ namespace NASCAR.Controllers
                     .Where(v => v.Id == reservation.VehicleId)
                     .Select(v => v.Price)
                     .FirstOrDefaultAsync() ?? 0;
-
-                DateTime pickUpDate = DateTime.Parse(reservation.PickUpDate);
-                DateTime dropDate = DateTime.Parse(reservation.DropDate);
-                int numberOfDays = 5;// CalculateNumberOfDays(pickUpDate, dropDate);
-
-                double totalPrice = 0;
-
-                if (reservation.PaymentType == PaymentEnum.Cash)
-                {
-                    totalPrice = _cashPayment.calculateThePrice(pricePerDay, numberOfDays);
-                }
-                else if (reservation.PaymentType == PaymentEnum.Card)
-                {
-                    totalPrice = _cardPayment.calculateThePrice(pricePerDay, numberOfDays);
-                }
-
-                reservation.Price = totalPrice.ToString("0.00");
+ 
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Success));

@@ -2,11 +2,12 @@
 
 namespace NASCAR.Services
 {
-    public class CashPayment : IPayment
+    public class CashPayment : IStrategyPayment
     {
-        public double calculateThePrice(double pricePerDay, int numberOfDays)
+       
+        public double CalculateThePrice(double price)
         {
-            return pricePerDay * numberOfDays;
+            return price;
         }
     }
 }

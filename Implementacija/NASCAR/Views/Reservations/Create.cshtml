@@ -1,4 +1,5 @@
-﻿@model NASCAR.Models.Reservation
+﻿﻿
+@model NASCAR.Models.Reservation
 
 @{
     ViewData["Title"] = "Rent";
@@ -19,20 +20,18 @@
                 <div class="form-group">
                     <label asp-for="PickUpDate" class="control-label"></label>
                     <input asp-for="PickUpDate" class="form-control" />
-                    <input value="@ViewData["VehicleId"]" asp-for="VehicleId" class="form-control invisible" readonly id="vehicle_id" />
-                    <input value="1" asp-for="DiscountId" class="form-control invisible" readonly id="discount" />
                     <span class="text-danger" id="date-from-validate"></span>
                     <br />
                 </div>
                 <div class="form-group">
-                    <label asp-for="DropDate" class="control-label"></label>
+                    <label asp-for="DropDate" class="control-label">Return date (more than 7 days 20% discount, more than 15 days 30% discount)</label>
                     <input asp-for="DropDate" class="form-control"  />
                     <span class="text-danger" id="date-to-validate"></span>
                     <br />
                 </div>
                 
                 <div class="form-group">
-                    <label asp-for="PaymentType" class="control-label"></label>
+                    <label asp-for="PaymentType" class="control-label">Payment type (10% discount for card - calculated after checkout)</label>
                     <select asp-for="PaymentType" class="form-control" asp-items="ViewBag.PaymentType"></select>
                     <span asp-validation-for="PaymentType" class="text-danger"></span>
                     <br />
@@ -41,11 +40,7 @@
                     <div class="form-group">
                         <label asp-for="Price" class="form-label mt-2">Total price in BAM</label>
                         <p></p>
-<<<<<<< HEAD
-                        <input class="visible form-control" asp-for="Price" placeholder="@ViewData["Price"] per day" id="price" readonly style="width: 150px;" />
-=======
                         <input class="visible" class="form-control" placeholder="@ViewData["Price"] per day" id="priceTemp" readonly="" />
->>>>>>> 8cc592dce03df59505f67e08672406310bd1768e
                     </div>
                     <br />
                     <div class="form-group">
@@ -64,16 +59,6 @@
     <a asp-controller="Home" asp-action="Index" class="mt-2 btn btn-outline-danger">Cancel</a>
 </div>
 
-<<<<<<< HEAD
-<script>
-        const price = document.getElementById("price");
-        var start = document.getElementsByName("PickUpDate")[0];
-        var end = document.getElementsByName("DropDate")[0];
-        start.addEventListener('change', calcDiff);
-        end.addEventListener('change', calcDiff);
-        var button = document.getElementsByName("reservate")[0];
-        var fromValidate = document.getElementById("date-from-validate");
-=======
     <script>
         
         //const input = document.getElementById('start_date');
@@ -87,26 +72,18 @@
 
       
       var fromValidate = document.getElementById("date-from-validate");
->>>>>>> 8cc592dce03df59505f67e08672406310bd1768e
         var toValidate = document.getElementById("date-to-validate");
+       
+          function popup(){
+              alert("Your reservation is being processed!");
+          }
 
-    function popup() {
-        alert("Your reservation is successfully taken!");
-    }
+        function calcDiff() {
 
-    function calcDiff() {
-        var startDate = new Date(start.value);
-        var endDate = new Date(end.value);
-        const currentDate = new Date();
-        var diff = endDate.getTime() - startDate.getTime();
-        var days = diff / (1000 * 3600 * 24);
+            var startDate = new Date(start.value);
+            var endDate = new Date(end.value);
+            const currentDate = new Date();
 
-<<<<<<< HEAD
-        if (start.value === "" || end.value === "") {
-            price.value = "";
-            button.disabled = true;
-            return;
-=======
             
 
             var diff = endDate.getTime() - startDate.getTime();
@@ -160,56 +137,9 @@
             price.value = (days * @Convert.ToInt32(priceDay));
             console.log(priceTemp.value);
             console.log(price.value);
->>>>>>> 8cc592dce03df59505f67e08672406310bd1768e
         }
 
-        if (startDate < currentDate) {
-            fromValidate.textContent = "Please select a valid date.";
-            button.disabled = true;
-        } else {
-            fromValidate.textContent = "";
-            button.disabled = false;
-        }
-
-        if (endDate < currentDate) {
-            toValidate.textContent = "Please select a valid date.";
-            button.disabled = true;
-        } else {
-            toValidate.textContent = "";
-            button.disabled = false;
-        }
-
-        if (endDate < startDate) {
-            price.value = "";
-            button.disabled = true;
-            return;
-        }
-
-            if (days > 0 && days <= 7) {
-                document.getElementById("discount").value = "5";
-                var pricePerDay = parseFloat("@ViewData["Price"]");
-                var totalPrice = pricePerDay * days;
-                price.value = totalPrice.toFixed(2);
-            } else if (days > 7 && days <= 14) {
-                document.getElementById("discount").value = "10";
-                var pricePerDay = parseFloat("@ViewData["Price"]");
-                var totalPrice = pricePerDay * days;
-                price.value = totalPrice.toFixed(2);
-            } else if (days > 14 && days <= 30) {
-                document.getElementById("discount").value = "15";
-                var pricePerDay = parseFloat("@ViewData["Price"]");
-                var totalPrice = pricePerDay * days;
-                price.value = totalPrice.toFixed(2);
-            } else if (days > 30) {
-                document.getElementById("discount").value = "20";
-                var pricePerDay = parseFloat("@ViewData["Price"]");
-                var totalPrice = pricePerDay * days;
-                price.value = totalPrice.toFixed(2);
-            }
-        }
     </script>
-
-
 
 
 

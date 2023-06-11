@@ -16,6 +16,12 @@ namespace NASCAR.Models
         
         public Double? DiscountTotal { get; set; }
 
+        public Discount(double? discountPercent, double? discountTotal)
+        {
+         
+            DiscountPercent = discountPercent;
+            DiscountTotal = discountTotal;
+        }
     }
 
 }
