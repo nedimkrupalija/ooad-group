@@ -1,26 +1,26 @@
-# Projekat Rent a Car
+# Project Rent a Car
 
-## Članovi tima
+## Team members
 * Safet Čomor
 * Amar Tahirović
 * Nedim Krupalija
 
-## Opis projekta
+## Project description
 
-Tek ste došli u novi grad, pokvarilo vam se vozilo ili ga nemate nikako, Rent a Car NASCAR je pravo rjesenje za vas. Nasa aplikacija nudi mogucnosti rezervacije raznih vozila po pristupacnim cijenama. Korisnik ima mogucnosti pregleda raznovrsne ponude, kontakt sa administratorima kao i pregled detalja iznajmljivanja vozila. Moze odabrati odgovarajuci termin pod uslovom da tada auto nije zauzeto. Prije svega potrebno se prvo registrovati odnosno prijaviti sa korisnickim racunom. Korisnik moze koristeci filtere pronaci bas odgovarajuce auto za njegove potrebe.
+You just arrived in new town, you don't have a car or it is broken, Rent a Car NASCAR is the real solution. You can rent out a car trough our app. User can view diverse offer, contact admins and view reservation details. 
+User can choose appropriate time period, under condition that car isn't rented out in that period. Firstly, you need to register or log in with your account. Using filters you can find car just for you.
 
-Administrator ce imati mogucnosti dodavanja novih auta za iznajmljivanje sto ukljucuje postavljanje cijene, slike, opisa i ostalih bitnih karakteristika vozila. Pored toga moguce je i izmijeniti podatke za postojece auto. Administrator ima pristup svim tekucim rezervacija vozila, te prekidanja rezervacije ukoliko je to potrebno.
+Admin can add new cars including setting price, picture, description and other relevant characteristics. Also it is posible to change details for car that is already in system. Admin has access to all current ongoing reservations and can terminate them if it is needed.
 
-## Funkcionalnosti
-### Korisnik 
-* Login/Registracija
-* Pregled svih dostupnih vozila
-* Komunikacija sa administratorima
-* Mogucnost pretrage sa filterima
-* Mogucnost produzenja rezervacije
+## Functionality
+### User 
+* Login/Registration
+* View all cars in system
+* Communication with admin
+* Searching with filters
 ### Administrator
-* Pregled svih rezervacija
-* Brisanje rezervacije
-* Izmjena rezervacije
-* Dodavanje vozila
-* Izmjena podataka za vozilo
+* View all reservations
+* Deleting reservation
+* Updating reservation
+* Adding vehicles
+* Changing vehicle details
